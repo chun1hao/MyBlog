@@ -1,7 +1,7 @@
-1. promise特点：<br />
+<h1>1. promise特点：</h1>
     （1）对象的状态不受外界影响；<br />
     （2）一旦状态改变，就不会再变，任何时候都可以得到这个结果<br />
-2. promise方法：<br />
+<h1>2. promise方法：</h1>
     （1）Promise.prototype.then(value=> console.log(value), err=> console.log(err))，then方法返回的是一个新的Promise实例;<br />
     （2）Promise.prototype.catch 等价于 promise.then(null,err=> console.log(err))；<br />
     （3）Promise.prototype.finally 无论promise的最终状态是成功（fulfilled）或失败（rejected）最终都会执行；<br />
@@ -28,7 +28,7 @@
             const resolved2 = Promise.resolve(32);<br />
             const rejected1 = Promise.reject(-1);<br />
             const allSettledPromise1 = Promise.allSettled([resolved1, resolved2, rejected1]).filter(item=> item.status === 'fulfilled'); // 过滤成功的请求<br />
-3. promise/A+ 地址：<br />
+<h1>3. promise/A+ 地址：</h1>
     英文版：https://promisesaplus.com/  <br />
     中文翻译：https://www.ituring.com.cn/article/66566<br />
     一些术语解释：<br />
