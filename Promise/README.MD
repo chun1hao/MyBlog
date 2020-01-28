@@ -1,11 +1,11 @@
-#Promise
+# Promise
 
-##1.prmise的特点：
+## 1.prmise的特点：
 ```
 （1）对象的状态不受外界影响；
 （2）一旦状态改变，就不会再变，任何时候都可以得到这个结果
 ```
-##2. promise方法：
+## 2. promise方法：
 ```
 （1）Promise.prototype.then(value=> console.log(value), err=> console.log(err))，then方法返回的是一个新的Promise实例;
 （2）Promise.prototype.catch 等价于 promise.then(null,err=> console.log(err))；
@@ -34,7 +34,7 @@ const resolved2 = Promise.resolve(32);
 const rejected1 = Promise.reject(-1);
 const allSettledPromise1 = Promise.allSettled([resolved1, resolved2, rejected1]).filter(item=> item.status === 'fulfilled'); // 过滤成功的请求
 ```
-##3. promise/A+ 地址：
+## 3. promise/A+ 地址：
 
 *[英文版](https://promisesaplus.com/)
 
