@@ -1,14 +1,14 @@
-## 1. [写法]
+# 1. [写法]
     12312n  或者 BigInt(123123)
-## 2. 与Number：
+# 2. 与Number：
     1.  不能用于 Math 对象中的方法
     2.  不能和任何 Number 实例混合运算，两者必须转换成同一种类型（转化时需要注意，可能会精度丢失） 
     转化：
     BigInt(10) + 10n;    //  20n   
     10 + Number(10n);    //  20
-## 3. typeof 123n === 'bigint' // true
+# 3. typeof 123n === 'bigint' // true
     typeof Object(123n) === 'object' // true
-## 4. BigInt 运算
+# 4. BigInt 运算
     可以使用 + - * / ** % 和除 >>>(BigInt有符号) 的位操作，单目+ 也不支持
     10n + 20n;    // 30n
     10n - 20n;    // -10n
@@ -36,7 +36,7 @@
 
     sort排序
     [4n, 6, -12n, 10, 4, 0, 0n].sort()      // [-12n, 0, 0n, 10, 4n, 4, 6]  不可用传参数，BigInt和number不能混合操作
-## 5.  方法
+# 5.  方法
     const bigint = 123456789123456789n;
 
     BigInt.prototype.toLocaleString()
