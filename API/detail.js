@@ -21,3 +21,25 @@ function objectIs(x, y){
         return x!==x && y!==y
     }
 }
+
+// 3.float 简单实现
+function myFlat(arr){
+    // 1. reduce
+    // return arr.reduce((r, c)=> r.concat(Array.isArray(c) ? myFlat(c) : c), [])
+    
+    // 2. JSON.stringify+replace+JSON.parse
+    // return JSON.parse(`[${JSON.stringify(arr).replace(/[\[|\]]/g, '')}]`)
+    
+    // 3. 递归
+    // let res = [];
+    // for(let i of arr){
+    //     res = res.concat(Array.isArray(i) ? myFlat(i) : i);
+    // }
+    // return res;
+    
+    // 4. 扩展运算符
+    // while(arr.some(Array.isArray)){
+    //     arr = [].concat(...arr)
+    // }
+    // return arr
+}
