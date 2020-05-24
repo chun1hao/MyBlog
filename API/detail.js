@@ -81,7 +81,7 @@ Function.prototype.myApply = function (context, arr) {
     return result;
 }
 
-// bind
+// 6.bind
 Function.prototype.bind = function (context) {
 
     if (typeof this !== "function") {
