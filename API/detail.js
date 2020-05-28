@@ -123,3 +123,27 @@ Array.prototype.myMap = function(callbackfn, thisArg){
     }
     return A    
 }
+
+// 7.filter
+Array.prototype.myFilter = function(callbackfn, thisArg){
+    if(this === null || this === undefined){
+        return new TypeError('can not read property "map" of null or undefined')
+    }
+    let O = Object(this)
+    let len = O.length >>> 0
+    if(typeof callbackfn !== 'function'){
+        return new TypeError(callbackfn+' is not a function')
+    }
+    let A = []
+    let k = 0
+    let to = 0
+    while(k < len){
+        if(k in O){
+            if(callbackfn.call(thisArg, O[k], k, O)){
+                A[to++] = O[k]
+            }
+        }
+        k++
+    }
+    return A    
+}
