@@ -102,3 +102,24 @@ Function.prototype.bind = function (context) {
     fBound.prototype = new fNOP();
     return fBound;
 }
+
+// 7.map
+Array.prototype.myMap = function(callbackfn, thisArg){
+    if(this === null || this === undefined){
+        return new TypeError('can not read property "map" of null or undefined')
+    }
+    let O = Object(this)
+    let len = O.length >>> 0
+    if(typeof callbackfn !== 'function'){
+        return new TypeError(callbackfn+' is not a function')
+    }
+    let A = new Array(len)
+    let k = 0
+    while(k < len){
+        if(k in O){
+            A[k] = callbackfn.call(thisArg, O[k], k, O)
+        }
+        k++
+    }
+    return A    
+}
