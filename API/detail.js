@@ -124,7 +124,7 @@ Array.prototype.myMap = function(callbackfn, thisArg){
     return A    
 }
 
-// 7.filter
+// 8.filter
 Array.prototype.myFilter = function(callbackfn, thisArg){
     if(this === null || this === undefined){
         return new TypeError('can not read property "map" of null or undefined')
@@ -148,7 +148,7 @@ Array.prototype.myFilter = function(callbackfn, thisArg){
     return A    
 }
 
-// 8.reduce
+// 9.reduce
 Array.prototype.myReduce = function(callbackfn, initialValue){
     // 异常处理
     if(this === null || this === undefined){
