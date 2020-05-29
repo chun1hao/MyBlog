@@ -47,9 +47,9 @@ function myFlat(arr){
 // 4. call
 Function.prototype.myCall = function(content){
     let obj = content || window // 当传content 为 null 的时候指向 window
-    content.fn = this
-    let res = content.fn(...[...arguments].slice(1))
-    delete content.fn
+    obj.fn = this
+    let res = obj.fn(...[...arguments].slice(1))
+    delete obj.fn
     return res // 函数有返回值
 }
 
