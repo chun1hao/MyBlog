@@ -45,19 +45,12 @@ function myFlat(arr){
 }
 
 // 4. call
-Function.prototype.myCall = function myCall(context) {
-    var context = context || window;
-    context.fn = this;
-
-    var args = [];
-    for(var i = 1, len = arguments.length; i < len; i++) {
-        args.push('arguments[' + i + ']');
-    }
-
-    var result = eval('context.fn(' + args +')');
-
-    delete context.fn
-    return result;
+Function.prototype.myCall = function(content){
+    let obj = content || window // 当传content 为 null 的时候指向 window
+    content.fn = this
+    let res = content.fn(...[...arguments].slice(1))
+    delete content.fn
+    return res // 函数有返回值
 }
 
 // 5. apply
