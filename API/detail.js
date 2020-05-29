@@ -147,3 +147,48 @@ Array.prototype.myFilter = function(callbackfn, thisArg){
     }
     return A    
 }
+
+// 8.reduce
+Array.prototype.myReduce = function(callbackfn, initialValue){
+    // 异常处理
+    if(this === null || this === undefined){
+        return new TypeError('can not read property "map" of null or undefined')
+    }
+    if(typeof callbackfn !== 'function'){
+        return new TypeError(callbackfn+' is not a function')
+    }
+    let O = Object(this)
+    let len = O.length >>> 0
+    
+    if(!len && !initialValue){
+        return new TypeError()
+    }
+    let k = 0
+    let accumulator
+    if(initialValue){
+        accumulator = initialValue
+    }else{
+        let kPresent = false
+        while(k < len && !kPresent){
+            if(k in O){
+                kPresent = true;
+                accumulator = O[k]
+            }
+            k++
+        }
+    }
+    
+    while(k < len){
+        if(k in O){
+            accumulator = callbackfn.call(undefined, accumulator, O[k], k, O)
+        }
+        k++
+    }
+    return accumulator
+}
+
+
+
+
+
+
