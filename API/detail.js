@@ -187,6 +187,40 @@ Array.prototype.myReduce = function(callbackfn, initialValue){
     return accumulator
 }
 
+// 10.push
+Array.prototype.myPush = function(){
+    let O = Object(this)
+    let len = O.length >>> 0    
+    let argLen = arguments.length >>> 0
+    
+    if (len + argLen > 2 ** 53 - 1) {
+        throw new TypeError("The number of array is over the max value restricted!")
+    }
+    
+    for(let i=0; i<argLen; i++){
+        O[len+i] = arguments[i]
+    }
+    let newLen = len + argLen
+    O.length = newLen
+    
+    return newLen
+}
+
+// 11.pop
+Array.prototype.myPop = function(){
+    let O = Object(this)
+    let len = O.length >>> 0    
+    let res
+    if(len){
+        len--
+        res = O[len]
+        delete O[len]
+        O.length = len
+    }else{
+        O.length = 0
+    }
+    return res
+}
 
 
 
