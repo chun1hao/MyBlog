@@ -109,15 +109,15 @@ Array.prototype.myMap = function(callbackfn, thisArg){
         return new TypeError('can not read property "map" of null or undefined')
     }
     let O = Object(this)
-    let len = O.length >>> 0
+    let len = O.length >>> 0 // >>> 是保证len为整数
     if(typeof callbackfn !== 'function'){
         return new TypeError(callbackfn+' is not a function')
     }
     let A = new Array(len)
     let k = 0
     while(k < len){
-        if(k in O){
-            A[k] = callbackfn.call(thisArg, O[k], k, O)
+        if(k in O){ // 此处使用in 不用 hasOwnPrototype，1是需要判断本身及原型链 2.可以有效处理稀疏数组（遇到empty直接跳过）
+            A[k] = callbackfn.call(thisArg, O[k], k, O) // 此处表明如果不传 thisArg，callbackfn 中this指向 window，传了则指向 thisArg
         }
         k++
     }
@@ -136,7 +136,7 @@ Array.prototype.myFilter = function(callbackfn, thisArg){
     }
     let A = []
     let k = 0
-    let to = 0
+    let to = 0 // A的索引
     while(k < len){
         if(k in O){
             if(callbackfn.call(thisArg, O[k], k, O)){
