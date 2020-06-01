@@ -55,21 +55,14 @@ Function.prototype.myCall = function(content){
 
 // 5. apply
 Function.prototype.myApply = function (context, arr) {
-    var context = Object(context) || window;
+    var context = context || window;
     context.fn = this;
-
     var result;
     if (!arr) {
         result = context.fn();
+    }else{
+        result = context.fn(...arr)
     }
-    else {
-        var args = [];
-        for (var i = 0, len = arr.length; i < len; i++) {
-            args.push('arr[' + i + ']');
-        }
-        result = eval('context.fn(' + args + ')')
-    }
-
     delete context.fn
     return result;
 }
