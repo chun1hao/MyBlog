@@ -58,7 +58,7 @@ Function.prototype.myApply = function (context, arr) {
     var context = context || window;
     context.fn = this;
     var result;
-    if (!arr) {
+    if (!Array.isArray(arr)) { // 如果arr是null或者undefined 不能...
         result = context.fn();
     }else{
         result = context.fn(...arr)
