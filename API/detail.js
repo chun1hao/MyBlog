@@ -179,7 +179,7 @@ Array.prototype.myPush = function(){
     let len = O.length >>> 0    
     let argLen = arguments.length >>> 0
     
-    if (len + argLen > 2 ** 53 - 1) {
+    if (len + argLen > 2 ** 53 - 1) { // 长度限制
         throw new TypeError("The number of array is over the max value restricted!")
     }
     
