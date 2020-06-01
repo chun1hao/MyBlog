@@ -208,6 +208,14 @@ Array.prototype.myPop = function(){
     return res
 }
 
+// 12.new
+function myNew(fn){
+    let obj = {}
+    obj.__proto__ = fn.prototype
+    let res = fn.apply(obj, [...arguments].slice(1))
+    return typeof res == 'object' ? res : obj
+}
+
 
 
 
