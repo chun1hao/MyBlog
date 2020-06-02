@@ -67,26 +67,25 @@ Function.prototype.myApply = function (context, arr) {
     return result;
 }
 
-// 6.bind
-Function.prototype.bind = function (context) {
-
+// 6.bind 
+// bind() 方法会创建一个新函数。当这个新函数被调用时，bind() 的第一个参数将作为它运行时的 this，之后的一序列参数将会在传递的实参前传入作为它的参数。
+Function.prototype.myBind = function (context) {
     if (typeof this !== "function") {
       throw new Error("Function.prototype.bind - what is trying to be bound is not callable");
     }
-
-    var self = this;
-    var args = Array.prototype.slice.call(arguments, 1);
-
-    var fNOP = function () {};
-
-    var fBound = function () {
-        var bindArgs = Array.prototype.slice.call(arguments);
-        return self.apply(this instanceof fNOP ? this : context, args.concat(bindArgs));
+    var self = this
+    var args = [...arguments].slice(1)
+    
+    var temFn = function(){}
+    var fn = function(){
+        // 1. bind 参数可以分开传
+        // 2. bind 可以new，new之后this指向新建的对象(不再指向 bind 绑定时的对象)
+        // 一个绑定函数也能使用new操作符创建对象：这种行为就像把原函数当成构造器。提供的 this 值被忽略，同时调用时的参数被提供给模拟函数。
+        return self.apply(this instanceof temFn ? this : context, args.concat(...arguments)) // 函数有返回值
     }
-
-    fNOP.prototype = this.prototype;
-    fBound.prototype = new fNOP();
-    return fBound;
+    temFn.prototype = this.prototype
+    fn.prototype = new temFn()
+    return fn
 }
 
 // 7.map
