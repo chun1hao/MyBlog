@@ -215,6 +215,19 @@ function myNew(fn){
     return typeof res == 'object' ? res : obj  // new 的特性，当fn返回值是一个对象时，只能访问返回值里面的属性
 }
 
+// 13. Object.create
+Object.create = function(proto){
+    var fn = function(){}
+    fn.prototype = proto
+    return new fn()
+}
+// Object.create() 第二个参数同 Object.defineProperties
+// Object.create 是继承了传入的对象（当传入null时，为一个空对象，无Object上任何方法），原型指向传入对象
+// new 创建的是 Object 的实例，原型指向Object.prototype
+
+
+
+
 
 
 
