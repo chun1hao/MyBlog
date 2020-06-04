@@ -138,5 +138,5 @@ thisArg: 执行回调时用作this 的对象
 ### 3. [闭包](https://github.com/chun1hao/MyBlog/issues/3)
 ### 4. [继承](https://github.com/chun1hao/MyBlog/issues/4)
 ### 5. [Event loop](https://github.com/chun1hao/MyBlog/issues/5)
-### 6. [this](https://github.com/chun1hao/MyBlog/issues/5)
+### 6. [this](https://github.com/chun1hao/MyBlog/issues/6)
 
