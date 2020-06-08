@@ -138,3 +138,69 @@ Array.prototype.myPop = function(){
     }
     return res
 }
+
+// 7.splice
+Array.prototype.mySplice = function(start, delCount){
+    let o = Object(this)
+    let len = o.length >>> 0
+    let addItem = [].slice.call(arguments, 2)
+    let addLen = addItem.length >>> 0
+
+    // start 处理    
+    if(start < 0){
+        let temStart = len + start
+        start = temStart < 0 ? 0 : temStart
+    }else{
+        start = start > len ? len : start
+    }
+
+    // delCount 处理
+    let temCount = len - start
+    if(delCount < 0) delCount = 0
+    if(delCount > temCount || delCount == undefined){
+        delCount = temCount
+    }
+
+    let result = Array(delCount)
+
+    // 获取删除的元素
+    for(let i=0; i<delCount; i++){
+        let _idx = start+i
+        if(_idx in o){
+            result[i] = o[_idx]
+            delete o[_idx]
+        }        
+    }
+
+    // 将删除元素后面的元素移动到相应位置
+    if(delCount > addLen){ // 如果删除的大于新增 
+        // [1,2,3,4,5,6] 7 8
+        let c = delCount - addLen
+        for(let i=start+delCount; i<len; i++){
+            o[i-c] = o[i]    
+        }
+    }
+    if(delCount < addLen){ // 如果删除的小于新增
+        // [1,2,3,4] 4 5 6
+        let c = addLen - delCount
+        for(let i=len-1; i>=start+delCount; i--){
+            o[i+c] = o[i]   
+        }
+    }
+
+    // 将新增元素放到原数组
+    if(addLen){
+        for(let i=0; i<addLen; i++){
+            o[start+i] = addItem[i]
+        }
+    }    
+
+    // 设置新的数组长度
+    o.length = len + addLen - delCount
+
+    return result
+}
+
+
+
+
