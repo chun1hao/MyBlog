@@ -131,6 +131,13 @@ thisArg: 执行回调时用作this 的对象
 返回值：数组中通过提供测试函数的第一个元素的索引。否则，返回-1
 ```
 
+## 11. 短路表达式
+x && y
+先将 x 转化为 boolean 值，如果为 false，返回 x，为 true 返回 y
+
+x || y
+先将 x 转化为 boolean 值，如果为 true，返回 x，为 false 返回 y
+
 
 ## 其他
 ### 1. [BigInt](https://github.com/chun1hao/MyBlog/issues/1)
