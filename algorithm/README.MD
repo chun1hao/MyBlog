@@ -52,5 +52,5 @@ for(let i=0;i<n;i++){
 2. 修改后的运行次数函数中，只保留最高阶项
 3. 如果最高阶项存在且不是1，则去除与这个项相乘的常数。
  
-## [排序](https://github.com/chun1hao/MyBlog/edit/master/algorithm/sort.js)
+## [排序](https://github.com/chun1hao/MyBlog/blob/master/algorithm/sort.js)
   
