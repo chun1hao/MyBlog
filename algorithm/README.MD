@@ -54,5 +54,4 @@ for(let i=0;i<n;i++){
 
 
 ## [排序](https://github.com/chun1hao/MyBlog/blob/master/algorithm/sort.js)
-排序的稳定性：如果两个相等的元素，在排序前后的相对位置保持不变，则是稳定的排序
   
