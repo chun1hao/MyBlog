@@ -32,13 +32,13 @@ function selectionSort(arr){
 // 插入排序：插入排序不需要额外空间，是本地排序，相等元素是不会交换前后顺序，因而也是稳定排序，时间复杂度为O(n^2)
 function insertionSort(arr){
     for(let i=1;i<arr.length;i++){
-        let preIdx = i-1
         let current = arr[i]
-        while(preIdx>=0 && arr[preIdx]>current){
-            arr[preIdx+1] = arr[preIdx]
-            preIdx--
+        let idx = i
+        while(idx>0 && arr[idx-1]>current){
+            arr[idx] = arr[idx-1]
+            idx--
         }
-        arr[preIdx+1] = current
+        arr[idx] = current
     }
     return arr
 }
