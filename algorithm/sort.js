@@ -44,6 +44,44 @@ function insertionSort(arr){
     return arr
 }
 
+// 希尔排序：先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录“基本有序”时，再对全体记录进行依次直接插入排序
+// 希尔排序不需要额外空间，是本地排序，不稳定，时间复杂度为O(nlogn)
 
+// 原版希尔排序
+function shellSort(arr){
+  let len = arr.length
+  for(let gap=Math.floor(len/2);gap>0;gap=Math.floor(gap/2)){
+    for(let i=gap;i<arr.length;i++){
+      let idx = i
+      let current = arr[i]
+      while(idx>0 && arr[idx-gap]>current){
+        arr[idx] = arr[idx-gap]
+        idx -= gap
+      }
+      arr[idx] = current
+    }
+  }
+  return arr
+}
+// Knuth 步长版希尔排序，步长 1, 4, 13, 40, ...
+function shellSort(arr){
+  let len = arr.length
+  let gap = 1
+  while(gap < len/3){
+    gap = gap*3 +1
+  }
+  while(gap>0){
+    for(let i=gap;i<len;i++){
+      let idx = i
+      let current = arr[i]
+      for(;idx>0&&arr[idx-gap]>current;idx-=gap){
+        arr[idx] = arr[idx-gap]
+      }
+      arr[idx] = current
+    }
+    gap = Math.floor(gap/3)
+  }
+  return arr
+}
 
 
