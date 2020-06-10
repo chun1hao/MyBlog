@@ -83,4 +83,50 @@ function shellSort(arr){
   return arr
 }
 
+// 归并排序：分而治之算法，以折半的方式来递归/迭代排序元素
+// 首先把一个未排序的序列从中间分割成2部分，再把2部分分成4部分，依次分割下去，直到分割成一个一个的数据，再把这些数据两两归并到一起，使之有序，不停的归并，最后成为一个排好序的序列
+// 归并排序需要额外空间，空间复杂度为O(n)，不是本地排序，相等元素是不会交换前后顺序，因而是稳定排序。时间复杂度为O(nlogn)
+function merge(left, right){
+  let i=0
+  let j=0
+  let res = []
+  while(i<left.length && j<right.length){
+    if(left[i]<right[j]){
+      res.push(left[i++])
+    }else{
+      res.push(right[j++])
+    }
+  }  
+  // 处理剩余的元素
+  if(i<left.length){
+    res = res.concat(left.slice(i))
+  }
+  if(j<right.length){
+    res = res.concat(right.slice(j))
+  }
+  return res
+}
+// 递归
+function mergeSort(arr){
+  let len = arr.length
+  if(len<2) return arr
+  let mid = Math.floor(len/2)
+  let left = mergeSort(arr.slice(0,mid))
+  let right = mergeSort(arr.slice(mid))
+  return merge(left, right)
+}
+// 迭代
+function mergeSort(arr){
+  let len = arr.length
+  for(let i=1; i<len; i*= 2){
+    for(let j=0; j<len; j+= i*2){
+      let C = merge(arr.slice(j, i+j),arr.slice(i+j, j+i*2))
+      arr.splice(j ,i*2, ...C)
+    }
+  }
+  return arr
+}
+
+
+
 
