@@ -70,7 +70,7 @@ function shellSort(arr){
   while(gap < len/3){
     gap = gap*3 +1
   }
-  while(gap>0){
+  for(;gap>0;gap=Math.floor(gap/3)){
     for(let i=gap;i<len;i++){
       let idx = i
       let current = arr[i]
@@ -79,7 +79,6 @@ function shellSort(arr){
       }
       arr[idx] = current
     }
-    gap = Math.floor(gap/3)
   }
   return arr
 }
