@@ -146,5 +146,5 @@ x || y
 ### 4. [继承](https://github.com/chun1hao/MyBlog/issues/4)
 ### 5. [Event loop](https://github.com/chun1hao/MyBlog/issues/5)
 ### 6. [this](https://github.com/chun1hao/MyBlog/issues/6)
-### 7. [this](https://github.com/chun1hao/MyBlog/issues/7)
+### 7. [拷贝](https://github.com/chun1hao/MyBlog/issues/7)
 
