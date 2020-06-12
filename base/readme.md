@@ -85,6 +85,14 @@ cFn.__proto__ == Fn.prototype // true
 ```
 
 ## 9. forEach 中不能使用 return 语句，可以使用 some、every 代替
+some: 有一个满足返回 true
+every: 都满足才返回 true
+
+```
+var arr = [1,2,3,4,5]
+arr.some(i=>i>3) // true
+arr.every(i=>i>3) // false
+```
 
 ## 10. 判断数组中是否包含某个值
 
