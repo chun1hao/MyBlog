@@ -84,7 +84,7 @@ cFn.__proto__ == Fn.prototype // true
 (4) Array.prototype.conct.apply([], arguments)
 ```
 
-## 9. forEach 中不能使用 return语句，可以使用 some every代替
+## 9. forEach 中不能使用 return 语句，可以使用 some、every 代替
 
 ## 10. 判断数组中是否包含某个值
 
