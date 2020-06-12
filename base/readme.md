@@ -130,12 +130,19 @@ thisArg: 执行回调时用作this 的对象
 返回值：数组中第一个满足所提供测试函数的元素的值，否则返回 undefined
 ```
 
-(4). array.findeIndex(callback[,thisArg])
+**(4). array.findeIndex(callback[,thisArg])**
 
 ```
 参数同 find
 
 返回值：数组中通过提供测试函数的第一个元素的索引。否则，返回-1
+```
+
+**(5). some**
+```
+有满足条件的返回 true，没有则返回 false
+var arr = [1,2,3,4,5]
+a = arr.some(i=>i==9) // true
 ```
 
 ## 11. 短路表达式
