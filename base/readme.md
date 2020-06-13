@@ -219,5 +219,5 @@ oa = null; // a属性的那个对象现在也是零引用了
 ### 5. [Event loop](https://github.com/chun1hao/MyBlog/issues/5)
 ### 6. [this](https://github.com/chun1hao/MyBlog/issues/6)
 ### 7. [拷贝](https://github.com/chun1hao/MyBlog/issues/7)
-### 8. [ES6总结](https://github.com/chun1hao/MyBlog/issues/7)
+### 8. [ES6简单总结](https://github.com/chun1hao/MyBlog/blob/master/ES6/readme.md)
 
