@@ -65,7 +65,9 @@ e // "o"
 let {toString: s} = 123 // s === Number.prototype.toString
 let {toString: s} = true // s === Boolean.prototype.toString
 ```
+
 **对于无法转化为对象的，如 null、undefined 会直接报错**
+
 5. 函数参数的解构赋值
 ```
 function add([x, y]){
@@ -88,7 +90,50 @@ move() //  [undefined, undefined]
 
 不同在于下面的写法默认值是move的整个参数，而不是x、y
 ```
+**使用场景**
 
+1. 交换变量的值
+```
+[x, y] = [y, x]
+```
+2. 从函数返回多个值
+```
+function Func(){
+  return {
+    x:1,
+    y:2
+  }
+}
+const [x, y, z] = Func()
+```
+3. 函数参数的定义，告别之前传参必须按照顺序
+```
+function f({x, y, z}) { ... }
+f({z: 3, y: 2, x: 1});
+```
+4. 提取 JSON 数据
+```
+const json = {
+  id: 42,
+  status: "OK",
+  data: [867, 5309]
+}
+let {id, status} = json
+```
+5. 函数参数的默认值
+```
+function Func({ x = 1, y = 2 } = {}) {}
+```
+6. 遍历 map
+```
+for (let [key, value] of map) {
+  console.log(key + " is " + value);
+}
+```
+7. 输入模块的指定方法
+```
+const { SourceMapConsumer, SourceNode } = require("source-map")
+```
 
 
 
