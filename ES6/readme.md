@@ -141,6 +141,95 @@ for (let [key, value] of map) {
 ```
 const { SourceMapConsumer, SourceNode } = require("source-map")
 ```
+## 3. 字符串的扩展
+- 加强了对 Unicode 的支持，写法"\u{41}" ，范围是 \u0000~\uFFFF
+- 可用for...of对字符串进行遍历
+- 模板字符串，可用输入多行，会保留所有的空格、换行等，花括号内可进行运算、调用函数
+  ```
+  let name = 'zhangsan'
+  let s = `my name is ${name}`
+  s // "my name is zhangsan"
+  ```
+ - 标签模板
+  ```
+  let a = 5;
+  let b = 10;
+
+  function tag(s, v1, v2) {
+    console.log(s);
+    console.log(v1);
+    console.log(v2);
+
+    return "OK";
+  }
+
+  tag`Hello ${ a + b } world ${ a * b}`;
+  // 第一个值始终为字符串值的数组，其余依次取传入模板的值
+  // ["Hello aa ", " world ", ""] 
+  // 15 
+  // 50
+  ```
+** 新增方法**
+- String.fromCodePoint() 从 Unicode 码点返回对应字符
+```
+String.fromCodePoint(0x78, 0x79) // xy
+```
+- String.raw() 返回一个斜杠都被转义（即斜杠前面再加一个斜杠）的字符串
+```
+String.raw`Hi\n${2+3}!` // 实际返回 "Hi\\n5!"，显示的是转义后的结果 "Hi\n5!"
+```
+- codePointAt() 返回一个字符的码点,能够处理 4 个字节储存的字符(String.fromCodePoint()的逆操作)
+- normalize() 把字符的不同表示方法统一为同样形式，返回新字符串()
+```
+// 字符 O（\u004F）和ˇ（\u030C）合成Ǒ（\u004F\u030C）
+// Ǒ（\u01D1）
+'\u01D1'.normalize() === '\u004F\u030C'.normalize() // true
+```
+- includes() 是否包含某个字符
+```
+'abc'.includes('a') // true
+```
+- startsWith() 是否以某个字符开始
+```
+'abc'.startsWith('a') // true
+```
+- startsWith() 是否以某个字符结束
+```
+'abc'.endsWith('c') // true
+```
+- repeat() 将原字符串重复n次
+```
+'abc'.repeat(3) // 'abcabcabc'
+```
+- padStart() ES2017新增，某个字符串不够指定长度，会在头部补全，返回新的字符串
+```
+'aa'.padStart(5, 'abcd') // abcaa 只会取符合的长度，超出的舍去，不传第二个参数用空格填充
+```
+- padEnd() ES2017新增，某个字符串不够指定长度，会在尾部补全，返回新的字符串
+```
+'aa'.padEnd(5, 'abcd') // aaabc 只会取符合的长度，超出的舍去，不传第二个参数用空格填充
+```
+- trimStart() ES2019新增,消除字符串头部的空格，返回新的字符串
+```
+'  aa  '.trimStart() // 'aa  '
+```
+- trimEnd() ES2019新增,消除尾部的空格，返回新的字符串
+```
+'  aa  '.trimEnd() // '  aa'
+```
+- matchAll() 返回一个正则表达式在当前字符串的所有匹配，返回的是一个迭代器
+```
+const regexp = /\s/g;
+const str = ' ass a ';
+let match = str.matchAll(regexp);
+
+for (const match of matches) {
+  console.log(match);
+}
+// [' ', index: 0, input: " ass a ", groups: undefined]
+// [' ', index: 4, input: " ass a ", groups: undefined]
+// [' ', index: 6, input: " ass a ", groups: undefined]
+```
 
 
 
