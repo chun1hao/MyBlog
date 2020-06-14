@@ -33,6 +33,40 @@ if (true) {
 **const、let 区别：使用const声明的常量不可以修改**
 
 ## 2. 解构赋值
+1. 数组的解构赋值
+```
+let [a, [b, [c]], d=5] = [1, [2, [3]]] 
+// a 1
+// b 2
+// c 3
+// d 5
+```
+2. 对象的解构赋值
+```
+const obj = {
+  name: 'zhangsan',
+  age: 18
+}
+let {age, name} = obj // age=18 name='zhangsan' 
+let {age, job="it"} = obj // age=18 job='it'
+let {age: age1} = obj  // age1=18
+```
+3. 字符串的解构赋值
+```
+const [a, b, c, d, e] = 'hello'
+a // "h"
+b // "e"
+c // "l"
+d // "l"
+e // "o"
+```
+4. 数值和布尔值的解构赋值
+```
+let {toString: s} = 123 // s === Number.prototype.toString
+let {toString: s} = true // s === Boolean.prototype.toString
+```
+**对于无法转化为对象的，如 null、undefined 会直接报错**
+
 
 
 
