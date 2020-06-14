@@ -66,6 +66,28 @@ let {toString: s} = 123 // s === Number.prototype.toString
 let {toString: s} = true // s === Boolean.prototype.toString
 ```
 **对于无法转化为对象的，如 null、undefined 会直接报错**
+5. 函数参数的解构赋值
+```
+function add([x, y]){
+  return x + y;
+}
+add([1, 2]);   // 3
+[[1, 2], [3, 4]].map(([a, b]) => a + b); // [3,7]
+// 使用默认值
+function move({x = 0, y = 0} = {}) {
+  return [x, y];
+}
+move({x:1, y:2}) //  [1, 2]
+move() //  [0, 0]
+
+// 注意下面的写法
+function move({x, y} = { x: 0, y: 0 }) {
+  return [x, y];
+}
+move() //  [undefined, undefined]
+
+不同在于下面的写法默认值是move的整个参数，而不是x、y
+```
 
 
 
