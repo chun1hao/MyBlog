@@ -163,6 +163,8 @@ function quickSort(arr){
 // 某个节点下标为 idx 
 // 父节点下标：Math.floor((idx-1)/2)
 // 左边子节点：2*idx+1 右边：2*idx+2
+
+// 递归
 function heapify(arr, i, len){
   let maxIdx = i,
       leftChildIdx = 2*i + 1,
