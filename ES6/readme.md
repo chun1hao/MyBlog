@@ -5,7 +5,7 @@
 ## 1. let、const
 
 let、const都是块级作用域，只在所在代码块内生效
-1. 不存在变量提升(变量提升 function > arguments > var, 自运行中也会提升)
+1. 不存在变量提升(变量提升 function > arguments > var, 自运行中也会提升，()包起来的不会提升)
 ```
 console.log(a) // 报错ReferenceError
 let a = 1
