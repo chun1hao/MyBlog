@@ -163,5 +163,37 @@ function quickSort(arr){
 // 某个节点下标为 idx 
 // 父节点下标：Math.floor((idx-1)/2)
 // 左边子节点：2*idx+1 右边：2*idx+2
+function heapify(arr, i, len){
+  let maxIdx = i,
+      leftChildIdx = 2*i + 1,
+      rightChildIdx = 2*i + 2;
+  // 这里是 <len 是处理后面最大值已经交换之后的情况
+  if(leftChildIdx < len && arr[leftChildIdx] > arr[maxIdx]){
+    maxIdx = leftChildIdx
+  }
+  if(rightChildIdx < len && arr[rightChildIdx] > arr[maxIdx]){
+    maxIdx = rightChildIdx
+  }
+  if(i !== maxIdx){
+    [arr[i], arr[maxIdx]] = [arr[maxIdx], arr[i]]
+    // 处理交换后的节点的子节点
+    heapify(arr, maxIdx, len)
+  }
+}
+function heapSort(arr){
+  let len = arr.length
+  // 先初始化数组为一个大堆根，从最后一个父节点开始调整
+  for(let i = Math.floor(len/2) -1; i>=0; i--){
+    heapify(arr, i, len)
+  }
+  // 将第一个元素与最后一个元素交换，然后将第一到最后一个之前的再进行调整
+  for(let i = len-1; i>=0; i--){    
+    [arr[0], arr[i]] = [arr[i], arr[0]]
+    len -= 1
+    heapify(arr, 0, len) 
+  }
+  return arr
+}
+
 
 
