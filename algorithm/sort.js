@@ -182,14 +182,13 @@ function heapify(arr, i, len){
 }
 // 遍历
 function heapify(arr, i, len){
-  let temp = arr[i]
   for(let j=2*i+1;j<len;j++){
     let maxIdx = j
     // 找出两个子节点大的哪一个与父节点比较
     if(j+1<len && arr[j]<arr[j+1]){
       maxIdx = j+1
     }
-    if(arr[maxIdx]>temp){
+    if(arr[maxIdx]>arr[i]){
       [arr[maxIdx], arr[i]] = [arr[i], arr[maxIdx]];
       i = maxIdx
     }
