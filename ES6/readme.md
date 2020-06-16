@@ -238,11 +238,30 @@ for (const match of matches) {
 new RegExp(/abc/ig, 'i').flags == 'i'
 ```
 - 字符串对象的match()、replace()、search()、split()内部调用转为调用RegExp实例对应的RegExp.prototype[Symbol.方法]
-- ES6 对正则表达式添加了u修饰符，含义为“Unicode 模式”
+- ES6 对正则表达式添加了u 修饰符，含义为“Unicode 模式”
 - 新增 RegExp.prototype.unicode，判断正则是否包含 u 修饰符
 ```
 var reg = /abc/u
 reg.unicode // true
+```
+- ES6 对正则表达式添加了y 修饰符，y修饰符的作用与g修饰符类似，后一次匹配都从上一次匹配成功的下一个位置开始，y修饰符确保匹配必须从剩余的第一个位置开始，相当于隐藏了一个 ^
+```
+var s = 'aaa_aa_a';
+var r1 = /a+/g;
+var r2 = /a+/y;
+
+r1.exec(s) // ["aaa"]
+r2.exec(s) // ["aaa"]
+
+r1.exec(s) // ["aa"]
+r2.exec(s) // null
+```
+- RegExp.prototype.sticky，是否设置了y修饰符
+- RegExp.prototype.flags，返回正则的修饰符
+- ?<=  ?!<= 后行断言
+```
+/(?<=%)\d+/.exec('100%00') // [00]
+/(?!<=%)\d+/.exec('100%00') // [100]
 ```
 
 
