@@ -263,6 +263,29 @@ r2.exec(s) // null
 /(?<=%)\d+/.exec('100%00') // [00]
 /(?!<=%)\d+/.exec('100%00') // [100]
 ```
+- ES2018新增 具名匹配，模式为 “问号 + 尖括号 + 组名”
+```
+const reg = /(\d{4})-(\d{2})-(\d{2})/;
+const match = reg.exec('1999-12-31'); // ["1999-12-31", "12", ""31""]
+
+const RE_DATE = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/
+const matchObj = RE_DATE.exec('1999-12-31');
+const year = matchObj.groups.year; // 1999
+const month = matchObj.groups.month; // 12
+const day = matchObj.groups.day; // 31
+```
+- ES2020 新增 String.prototype.matchAll()，返回一个Iterator
+```
+const string = 'test1test2test3';
+const regex = /t(e)(st(\d?))/g;
+
+for (const match of string.matchAll(regex)) {
+  console.log(match);
+}
+// ["test1", "e", "st1", "1", index: 0, input: "test1test2test3"]
+// ["test2", "e", "st2", "2", index: 5, input: "test1test2test3"]
+// ["test3", "e", "st3", "3", index: 10, input: "test1test2test3"]
+```
 
 
 
