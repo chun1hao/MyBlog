@@ -217,30 +217,30 @@ function heapSort(arr){
 // 计数排序：统计每个元素重复出现的次数，然后从小到大按顺序填充数组
 // 计数排序适合整数排序，时间复杂度为O(n+k)，其中 K 为最大最小之差，空间复杂度为O(k)，稳定排序
 function countSort(arr){
-    let min = arr[0]
-    let count = []
-    for(let i=1;i<arr.length;i++){
-      if(min > arr[i]){
-        min = arr[i]
-      }
+  let min = arr[0]
+  let count = []
+  for(let i=1;i<arr.length;i++){
+    if(min > arr[i]){
+      min = arr[i]
     }
-    // 将下标置为arr中元素的值，下标对应出现的次数
-    for(let i=0;i<arr.length;i++){
-      // 处理有负数的情况
-      let tem = arr[i] - min
-      count[tem] = count[tem] ?  count[tem] + 1 : 1
-    }
-
-    let idx = 0
-    for(let i=0;i<count.length;i++){
-      let current = count[i]
-      while(current){
-        arr[idx++] = i + min
-        current--
-      }
-    }
-    return arr
   }
+  // 将下标置为arr中元素的值，下标对应出现的次数
+  for(let i=0;i<arr.length;i++){
+    // 处理有负数的情况
+    let tem = arr[i] - min
+    count[tem] = count[tem] ?  count[tem] + 1 : 1
+  }
+
+  let idx = 0
+  for(let i=0;i<count.length;i++){
+    let current = count[i]
+    while(current){
+      arr[idx++] = i + min
+      current--
+    }
+  }
+  return arr
+}
 
 
 
