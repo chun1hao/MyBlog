@@ -286,7 +286,9 @@ for (const match of string.matchAll(regex)) {
 // ["test2", "e", "st2", "2", index: 5, input: "test1test2test3"]
 // ["test3", "e", "st3", "3", index: 10, input: "test1test2test3"]
 ```
-
+## 5. 数值的扩展
+- 二进制表示法：0b或0B开头表示二进制(0bXX或0BXX)
+- 八进制表示法：0o或0O开头表示二进制(0oXX或0OXX)
 
 
 
