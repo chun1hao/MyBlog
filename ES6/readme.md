@@ -232,6 +232,19 @@ for (const match of matches) {
 // [' ', index: 4, input: " ass a ", groups: undefined]
 // [' ', index: 6, input: " ass a ", groups: undefined]
 ```
+## 4. 正则的扩展
+- es6在第一个参数是正则的时候，允许传第二个参数做为修饰符，且会覆盖之前的修饰符
+```
+new RegExp(/abc/ig, 'i').flags == 'i'
+```
+- 字符串对象的match()、replace()、search()、split()内部调用转为调用RegExp实例对应的RegExp.prototype[Symbol.方法]
+- ES6 对正则表达式添加了u修饰符，含义为“Unicode 模式”
+- 新增 RegExp.prototype.unicode，判断正则是否包含 u 修饰符
+```
+var reg = /abc/u
+reg.unicode // true
+```
+
 
 
 
