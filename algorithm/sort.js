@@ -244,6 +244,48 @@ function countSort(arr){
 
 // 桶排序：将数组放置到给的桶中，然后每个桶排成有序，最后合成一个
 // 桶排序需要额外空间，是外部排序，稳定性取决于每个桶内的排序，时间复杂度是线性级O(n)
+function bucketSort(arr, num = 5){    
+  let min = arr[0]
+  let max = arr[0]
+  let buckets = []
+  
+  for(let i=0;i<arr.length;i++){
+    min = arr[i] < min ? arr[i] : min 
+    max = arr[i] > max ? arr[i] : max
+  } 
+  
+  // 计算每个桶放置的数量  
+  let count = (max - min + 1)/num 
+  while(num){
+    buckets.push([])
+    num--
+  }     
+  for(let i=0;i<arr.length;i++){
+    let current = arr[i]
+    let idx = Math.floor((current - min) / count)
+    let A = buckets[idx]
+    let _len = A.length     
+    if(_len){
+        // 插入排序
+        while(_len>0 && A[_len - 1] > current){
+          A[_len] = A[_len - 1]
+          _len--            
+        }
+        A[_len] = current
+    }else{
+      A.push(current)
+    }
+  }
+  let index = 0
+  // 最后将每个桶合并
+  for(let i=0;i<buckets.length;i++){
+    for(let j=0;j<buckets[i].length;j++){
+      arr[index++] = buckets[i][j]
+    }
+  }
+  return arr
+}
+
 
 
 
