@@ -53,5 +53,7 @@ for(let i=0;i<n;i++){
 3. 如果最高阶项存在且不是1，则去除与这个项相乘的常数。
 
 
-## [排序](https://github.com/chun1hao/MyBlog/blob/master/algorithm/sort.js)
+## [经典排序](https://github.com/chun1hao/MyBlog/blob/master/algorithm/sort.js)
+
+
   
