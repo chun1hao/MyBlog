@@ -288,7 +288,43 @@ function bucketSort(arr, num = 5){
 
 // 基数排序：先按照数字的个位，将其置于下标为其个位数的桶中，然后再按照十位数字放于桶，至到排到最大数的最高位
 // 基数排序是稳定的，时间复杂度为O(k*n)，k是最大元素的位数
+function getNumLen(num){
+    let n = 0
+    do{
+        n++
+        num = num /10
+    }while(num > 1)
+    return n
+}
+function getPositionNum(num, i){
+    return Math.floor(num/10**(i-1)%10)
+}
+function radixSort(arr){
+    let max = arr[0]
+    let min = arr[0]
+    for(let i=0;i<arr.length;i++){
+        max = max < arr[i] ? arr[i] : max
+        min = min > arr[i] ? arr[i] : min
+    }
+    let maxLen = getNumLen(max)
+    let buckets = Array.from({length: 10}, ()=>[])
+    for(let k=1;k<=maxLen;k++){
+        for(let j=0;j<arr.length;j++){
+            let idx = getPositionNum(arr[j]-min, k)
+            buckets[idx].push(arr[j] - min)
+        }
 
+        console.log(buckets)
+        let index = 0
+        for(let i=0;i<buckets.length;i++){
+            for(let j=0;j<buckets[i].length;j++){
+                arr[index++] = buckets[i][j] + min
+            }
+            buckets[i] = []
+        }
+    }
+    return arr
+}
 
 
 
