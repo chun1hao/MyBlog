@@ -289,6 +289,8 @@ function bucketSort(arr, num = 5){
 // 基数排序：先按照数字的个位，将其置于下标为其个位数的桶中，然后再按照十位数字放于桶，至到排到最大数的最高位
 // 基数排序也可以从高位开始排，排了之后如果当前桶不止一个元素，则再次将改桶又分成10个桶递归排列
 // 基数排序是稳定的，时间复杂度为O(k*n)，k是最大元素的位数
+
+// 获取最大元素长度
 function getNumLen(num){
     let n = 0
     do{
@@ -297,6 +299,7 @@ function getNumLen(num){
     }while(num > 1)
     return n
 }
+// 获取指定元素指定位置的数字
 function getPositionNum(num, i){
     return Math.floor(num/10**(i-1)%10)
 }
@@ -311,11 +314,10 @@ function radixSort(arr){
     let buckets = Array.from({length: 10}, ()=>[])
     for(let k=1;k<=maxLen;k++){
         for(let j=0;j<arr.length;j++){
+            // - min 是处理负数的情况
             let idx = getPositionNum(arr[j]-min, k)
             buckets[idx].push(arr[j] - min)
         }
-
-        console.log(buckets)
         let index = 0
         for(let i=0;i<buckets.length;i++){
             for(let j=0;j<buckets[i].length;j++){
