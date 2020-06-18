@@ -323,6 +323,7 @@ function radixSort(arr){
             for(let j=0;j<buckets[i].length;j++){
                 arr[index++] = buckets[i][j] + min
             }
+            // 数字取出后将桶清空
             buckets[i] = []
         }
     }
