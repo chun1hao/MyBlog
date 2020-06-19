@@ -289,6 +289,41 @@ for (const match of string.matchAll(regex)) {
 ## 5. 数值的扩展
 - 二进制表示法：0b或0B开头表示二进制(0bXX或0BXX)
 - 八进制表示法：0o或0O开头表示二进制(0oXX或0OXX)
-
-
+- Number.isFinite()：判断数值是否有限，对于非数值返回 false
+```
+Number.isFinite(15); // true
+Number.isFinite(Infinity); // false
+```
+- Number.isNaN()：判断是否为NaN，对于非数值返回 false
+- Number.parseInt(), Number.parseFloat()
+```
+Number.parseInt('12.34') // 12
+Number.parseFloat('123.45') // 123.45
+```
+- Number.isInteger(): 是否为整数
+- Number.EPSILON：数值最小精度
+- Number.isSafeInteger()：是否为安全数，即Number.MAX_SAFE_INTEGER（2^53 -1 ）和Number.MIN_SAFE_INTEGER（-2^53 -1 ）之间
+- Math.trunc()：去除一个数的小数部分，返回整数部分
+- Math.sign()：判断一个数到底是正数、负数、还是零
+```
+参数为正数，返回+1；
+参数为负数，返回-1；
+参数为 0，返回0；
+参数为-0，返回-0;
+其他值，返回NaN
+```
+- Math.cbrt()：计算立方根ath.imul()：返回两个数以 32 位带符号整数形式相乘的结果 
+- Math.hypot()：返回所有数值平方和的平方根
+- Math.expm1()：返回e^n - 1
+- Math.log1p()：返回1 + n的自然对数(Math.log(1 + n))
+- Math.log10()：返回以10为底的n的对数
+- Math.log2()：返回以2为底的n的对数
+- Math.sinh()：返回n的双曲正弦
+- Math.cosh()：返回n的双曲余弦
+- Math.tanh()：返回n的双曲正切
+- Math.asinh()：返回n的反双曲正弦
+- Math.acosh()：返回n的反双曲余弦
+- Math.atanh()：返回n的反双曲正切
+- ** 指数运算
+- BigInt
 
