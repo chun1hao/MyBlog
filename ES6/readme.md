@@ -325,5 +325,5 @@ Number.parseFloat('123.45') // 123.45
 - Math.acosh()：返回n的反双曲余弦
 - Math.atanh()：返回n的反双曲正切
 - ** 指数运算
-- BigInt
+- [BigInt](https://github.com/chun1hao/MyBlog/issues/1)
 
