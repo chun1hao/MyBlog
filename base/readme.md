@@ -212,12 +212,11 @@ oa = null; // a属性的那个对象现在也是零引用了
 
 
 ## 其他
-### 1. [BigInt](https://github.com/chun1hao/MyBlog/issues/1)
-### 2. [隐式转换](https://github.com/chun1hao/MyBlog/issues/2)
-### 3. [闭包](https://github.com/chun1hao/MyBlog/issues/3)
-### 4. [继承](https://github.com/chun1hao/MyBlog/issues/4)
-### 5. [Event loop](https://github.com/chun1hao/MyBlog/issues/5)
-### 6. [this](https://github.com/chun1hao/MyBlog/issues/6)
-### 7. [拷贝](https://github.com/chun1hao/MyBlog/issues/7)
-### 8. [ES6简单总结](https://github.com/chun1hao/MyBlog/blob/master/ES6/readme.md)
+### 1. [隐式转换](https://github.com/chun1hao/MyBlog/issues/2)
+### 2. [闭包](https://github.com/chun1hao/MyBlog/issues/3)
+### 3. [继承](https://github.com/chun1hao/MyBlog/issues/4)
+### 4. [Event loop](https://github.com/chun1hao/MyBlog/issues/5)
+### 5. [this](https://github.com/chun1hao/MyBlog/issues/6)
+### 6. [拷贝](https://github.com/chun1hao/MyBlog/issues/7)
+### 7. [ES6简单总结](https://github.com/chun1hao/MyBlog/blob/master/ES6/readme.md)
 
