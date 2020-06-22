@@ -327,3 +327,61 @@ Number.parseFloat('123.45') // 123.45
 - ** 指数运算
 - [BigInt](https://github.com/chun1hao/MyBlog/issues/1)
 
+## 6. 函数的扩展
+- 函数参数的默认值
+形式：function Func(x = 1, y = 2) {}
+参数赋值：惰性求值(函数调用后才求值)
+参数位置：一般将有默认值得参数设置为尾参数，这样参数才可以省略
+length：不适用默认值时，length为参数的个数，使用后为没有默认值的参数个数
+作用域：函数作用域
+声明方式：默认声明，不能用const或let再次声明相同名称的参数
+- rest 参数
+形式：...变量名,rest 参数之后不能再有其他参数
+```
+function add(...values) {
+  let sum = 0;
+  for (var val of values) {
+    sum += val;
+  }
+  return sum;
+}
+add(2, 5, 3) // 10
+```
+- 严格模式
+使用了默认值，结构赋值，扩展运算符之后函数内部不能使用严格模式
+- name 属性：返回函数的名称
+- 箭头函数
+  1. 箭头函数内的this对象，是定义时所在的对象，而不是使用时所在的对象
+  2. 不可以当作构造函数
+  3. 没有arguments对象
+  4. 不可以使用yield命令，因此箭头函数不能用作 Generator 函数
+- 尾调用优化，尾调用是指某个函数的最后一步是调用另一个函数
+```
+// 尾调用
+function f(x){
+  return g(x);
+}
+// 下面为非尾调用
+function f(x){
+  let y = g(x);
+  return y; // 调用后有赋值
+}
+
+function f(x){
+  return g(x) + 1; // 有运算
+}
+
+function f(x){
+  g(x); 
+}
+等价于下面
+function f(x){
+  g(x);
+  return undefined
+}
+```
+
+
+
+
+
