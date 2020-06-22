@@ -383,7 +383,7 @@ function f(x){
 尾递归：尾调用调用的是自身，优化为把所有用到的内部变量改写成函数的参数
 - ES2017 允许函数的最后一个参数有尾逗号
 - Function.prototype.toString()：会保留内部注释
-- catch 命令的参数省略
+- catch 命令的参数省略，如果不需要用到catch的err信息
 ```
 try {
   // ...
