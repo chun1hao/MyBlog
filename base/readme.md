@@ -28,10 +28,32 @@ console.log(p2) // ->  {name: 'aaa',age: 18}
 
 函数test有局部变量obj，接收p1作为参数，即将p1赋值给obj，此时p1和obj指向同一个内存地址，故obj.name 改变后 p1也改变，后将obj指向了一个新的内存地址，与p1的联系断开，新对象在函数结束后该对象被垃圾回收
 
-## 3. null 不是对象，typeof null === 'object' 是js的bug
+## 3. js 是词法作用域，当函数内访问变量时，是从声明的位置向上查找，而不是调用时
+```
+var x = 10
+function f2(){
+    console.log(x)
+}
+function f1(f){
+    var x = 20
+    f()
+}
+f1(f2) // 10
+```
+```
+function f2(){
+    console.log(x)
+}
+function f1(f){
+    var x = 20
+    f()
+}
+f1(f2) // x is not defined
+```
 
-## 4. '1'.toString() 运行过程
+## 4. null 不是对象，typeof null === 'object' 是js的bug
 
+## 5. '1'.toString() 运行过程
 ```
 1. var a = new Object('1')  // Number、String、Boolean、BigInt、Symbol都是包装类型，es6新规范在new symbol  bigint 会报错，所以不使用new String
 2. a.toString
@@ -46,12 +68,14 @@ str.name = "jeson";  // 添加属性不会报错
 alert(str.name) ;// undifined 实例已经销毁获取不到
 ```
 
-## 5. 检测数据类型
+## 6. 检测数据类型
 typeof 对于基本数据类型除了null 都能正确判断，对于引用类型，除了function 其他都返回object
 
 instanceof 基于原型链查询，只要处于原型链中，都返回true
 
-## 6. Object.is 和 ===
+
+
+## 7. Object.is 和 ===
 
 Object.is修复了===一些错误
 ```
@@ -60,7 +84,7 @@ Object.is(-0, +0) // false
 Object.is(NaN, NaN) // true
  ```   
  
-## 7. 原型链：
+## 8. 原型链：
 
 (1). 在js中，每当定义一个函数数据类型（普通函数、类）时，都会自带一个 prorotype 属性，其指向函数的原型对象；
      当函数经过 new 调用后，返回一个实例对象，实例有 __proto__ 属性，指向函数的原型对象;
@@ -75,7 +99,7 @@ cFn.__proto__ == Fn.prototype // true
 
 ***in 检查对象中是否含有某个属性时，如果对象中没有但是原型链中有，也会返回 true***
 
-## 8. 类数组转化为数组
+## 9. 类数组转化为数组
 
 **类数组比如函数中 arguments，其拥有length，可使用下标访问，但是不能使用数组的方法**
 
@@ -86,7 +110,7 @@ cFn.__proto__ == Fn.prototype // true
 (4) Array.prototype.conct.apply([], arguments)
 ```
 
-## 9. forEach 中不能使用 return 语句，可以使用 some、every 代替
+## 10. forEach 中不能使用 return 语句，可以使用 some、every 代替
 some: 有一个满足返回 true
 every: 都满足才返回 true
 
@@ -96,7 +120,7 @@ arr.some(i=>i>3) // true
 arr.every(i=>i>3) // false
 ```
 
-## 10. 判断数组中是否包含某个值
+## 11. 判断数组中是否包含某个值
 
 **(1). indexOf, 有返回下标，无返回-1**
 
@@ -147,14 +171,14 @@ var arr = [1,2,3,4,5]
 a = arr.some(i=>i==9) // true
 ```
 
-## 11. 短路表达式
+## 12. 短路表达式
 x && y
 先将 x 转化为 boolean 值，如果为 false，返回 x，为 true 返回 y
 
 x || y
 先将 x 转化为 boolean 值，如果为 true，返回 x，为 false 返回 y
 
-## 12. 垃圾回收机制
+## 13. 垃圾回收机制
 jst在创建变量（对象，字符串等）时自动进行了内存分配，在不使用它们时“自动”释放， 释放的过程称为垃圾回收
 
 **内存生命周期**
