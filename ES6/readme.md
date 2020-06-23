@@ -392,6 +392,67 @@ try {
 }
 ```
 
-
-
+## 7. 数组的扩展
+- Array.from：转换具有Iterator接口的数据结构为真正数组，返回新数组，包括 ES6 新增的数据结构 Set 和 Map
+```
+Array.from([1, 2, 3], x => x + x) // [2,4,6]
+Array.from({length: 3}, ()=>3) // [3, 3, 3]
+```
+- Array.of()：将一组值，转换为数组
+```
+Array.of(3, 11, 8) // [3,11,8]
+```
+- copyWithin()：把指定位置的成员复制到其他位置，会修改原数组，不会改变原数组的长度
+```
+Array.prototype.copyWithin(target, start = 0, end = this.length)
+// 
+```
+target（必需）：从该位置开始替换数据。如果为负值，表示倒数
+start（可选）：从该位置开始读取数据，默认为 0。如果为负值，表示从末尾开始计算
+end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示从末尾开始计算
+如为负值则是倒数
+```
+[1, 2, 3, 4, 5].copyWithin(0, 3, 4) // [4, 2, 3, 4, 5]
+[1, 2, 3, 4, 5].copyWithin(0, 1) // [2, 3, 4, 5, 5]
+```
+- find()：返回第一个符合条件的成员
+- findIndex()：返回第一个符合条件的成员索引值
+- fill()：根据指定值填充整个数组，返回原数组
+- keys()：返回以索引值为遍历器的对象
+```
+for (let index of ['a', 'b'].keys()) {
+  console.log(index);
+}
+// 0
+// 1
+```
+- values()：返回以属性值为遍历器的对象
+```
+for (let index of ['a', 'b'].values()) {
+  console.log(index);
+}
+// a
+// b
+```
+- entries()：返回以索引值和属性值为遍历器的对象
+```
+for (let [index, elem] of ['a', 'b'].entries()) {
+  console.log(index, elem);
+}
+// 0 "a"
+// 1 "b"
+```
+- 数组空位：ES6明确将数组空位转为undefined(空位处理规不一，建议避免出现)
+- ES2016 include：判断数组中是否包含某个值
+```
+[1,2,3,4,5].includes(2,3) // false
+[1,2,3,4,5].includes(2,1) // true
+```
+- flat()：数组扁平化，参数为多少层，默认一层，infinity为展开所有
+- flatMap()：方法对原数组的每个成员执行一个函数，然后对返回值组成的数组执行flat()方法。该方法返回一个新数组，不改变原数组
+```
+[1, 2, 3, 4].flatMap(x => [x * 2]);
+// [2, 4, 6, 8]
+```
+- ES2019 规定，Array.prototype.sort() 为稳定排序
 
