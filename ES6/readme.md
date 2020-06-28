@@ -456,3 +456,23 @@ for (let [index, elem] of ['a', 'b'].entries()) {
 ```
 - ES2019 规定，Array.prototype.sort() 为稳定排序
 
+## 8. 对象的扩展
+- 简洁表示法：直接写入变量和函数作为对象的属性和方法
+```
+let a = 'aa'
+let b = {a} //{a: "aa"}
+```
+- 属性名表达式：使用字面量定义对象时可以用[]，里面可以为变量和表达式，不能和简洁表示同时使用
+- 属性的可枚举性：Object.getOwnPropertyDescriptor(obj, 'foo')中的enumerable，如果为false，for...in，Object.keys()，JSON.stringify()，Object.assign()会忽略该值
+- super 关键字：指向当前对象的原型对象
+- Object.is()：对比两值是否相等
+- Object.assign()：合并对象(浅拷贝)，返回原对象
+- Object.getPrototypeOf()：返回对象的原型对象
+- Object.setPrototypeOf()：设置对象的原型对象
+- ES2020 新增链判断运算符
+```
+const message = {a:b}
+const b = message.a.b?.c  // undefined
+```
+- ES2020 新增 Null 判断运算符 ??,当运算符左侧的值为null或undefined时，返回右侧的值
+
