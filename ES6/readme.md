@@ -477,3 +477,56 @@ const b = message.a.b?.c  // undefined
 ```
 - ES2020 新增 Null 判断运算符 ??,当运算符左侧的值为null或undefined时，返回右侧的值
 
+## 9. symbol
+- 定义：独一无二的值
+- 声明：const set = Symbol(str)
+- 入参：字符串(可选)
+
+- Symbol()：创建以参数作为描述的Symbol值(不登记在全局环境)
+- Symbol.for()：接受一个字符串作为参数，然后搜索有没有以该参数作为名称的 Symbol 值，如存在此参数则返回原有的Symbol值,否则就新建一个以该字符串为名称的 Symbol 值(先搜索后创建，登记在全局环境)
+```
+let s1 = Symbol.for('foo');
+let s2 = Symbol.for('foo');
+
+s1 === s2 // true
+```
+- Symbol.keyFor()：返回已登记的Symbol值的描述(只能返回Symbol.for()的key)
+```
+let s1 = Symbol.for("foo");
+Symbol.keyFor(s1) // "foo"
+
+let s2 = Symbol("foo");
+Symbol.keyFor(s2) // undefined
+```
+- Object.getOwnPropertySymbols()：返回对象中所有用作属性名的Symbol值的数组
+```
+// Symbol 作为属性名，遍历对象的时候，该属性不会出现在for...in、for...of循环中，也不会被Object.keys()、Object.getOwnPropertyNames()、JSON.stringify()返回
+const obj = {};
+let a = Symbol('a');
+let b = Symbol('b');
+
+obj[a] = 'Hello';
+obj[b] = 'World';
+
+const objectSymbols = Object.getOwnPropertySymbols(obj);
+
+objectSymbols
+// [Symbol(a), Symbol(b)]
+```
+- Symbol.hasInstance：指向一个内部方法，当其他对象使用instanceof运算符判断是否为此对象的实例时会调用此方法
+- Symbol.isConcatSpreadable：指向一个布尔，定义对象用于Array.prototype.concat()时是否可展开
+```
+let arr2 = ['c', 'd'];
+arr2[Symbol.isConcatSpreadable] = false;
+['a', 'b'].concat(arr2, 'e') // ['a', 'b', ['c','d'], 'e']
+```
+- Symbol.species：指向一个构造函数，当实例对象使用自身构造函数时会调用指定的构造函数
+- Symbol.match：指向一个函数，当实例对象被String.prototype.match()调用时会重新定义match()的行为
+- Symbol.replace：指向一个函数，当实例对象被String.prototype.replace()调用时会重新定义replace()的行为
+- Symbol.search：指向一个函数，当实例对象被String.prototype.search()调用时会重新定义search()的行为
+- Symbol.split：指向一个函数，当实例对象被String.prototype.split()调用时会重新定义split()的行为
+- Symbol.iterator：指向一个默认遍历器方法，当实例对象执行for-of时会调用指定的默认遍历器
+- Symbol.toPrimitive：指向一个函数，当实例对象被转为原始类型的值时会返回此对象对应的原始类型值
+- Symbol.toStringTag：指向一个函数，当实例对象被Object.prototype.toString()调用时其返回值会出现在toString()返回的字符串之中表示对象的类型
+- Symbol.unscopables：指向一个对象，指定使用with时哪些属性会被with环境排除
+
