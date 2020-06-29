@@ -463,6 +463,7 @@ let a = 'aa'
 let b = {a} //{a: "aa"}
 ```
 - 属性名表达式：使用字面量定义对象时可以用[]，里面可以为变量和表达式，不能和简洁表示同时使用
+- ES2017 新增 Object.getOwnPropertyDescriptor(obj, 'foo')，返回指定对象所有自身属性（非继承属性）的描述对象（value、writable、enumerable、configurable）
 - 属性的可枚举性：Object.getOwnPropertyDescriptor(obj, 'foo')中的enumerable，如果为false，for...in，Object.keys()，JSON.stringify()，Object.assign()会忽略该值
 - super 关键字：指向当前对象的原型对象
 - Object.is()：对比两值是否相等
