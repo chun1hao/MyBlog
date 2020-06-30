@@ -239,6 +239,19 @@ oa = null; // a属性的那个对象现在也是零引用了
 - 函数的返回结果只依赖于它的参数
 - 函数执行过程里面没有副作用
 
+## 15. import
+- import * as a from 'a1'：会将a1中所有export（export default、export）导入到新文件并赋值给 a
+```
+// a.js
+export default ()=> 'aa'
+export const c = 'aaa'
+
+// b.js
+import * as data from './a'
+
+console.log(data)  // {default: function default(),c:'aaa' }
+```
+
 ## 其他
 ### 1. [隐式转换](https://github.com/chun1hao/MyBlog/issues/2)
 ### 2. [闭包](https://github.com/chun1hao/MyBlog/issues/3)
