@@ -240,7 +240,7 @@ oa = null; // a属性的那个对象现在也是零引用了
 - 函数执行过程里面没有副作用
 
 ## 15. import
-- import * as a from 'a1'：会将a1中所有export（export default、export）导入到新文件并赋值给 a
+- import * as a from 'a1'：会将a1中所有export（export default、export）导入到新文件并包裹到 a 里面
 ```
 // a.js
 export default ()=> 'aa'
@@ -251,6 +251,7 @@ import * as data from './a'
 
 console.log(data)  // {default: function default(),c:'aaa' }
 ```
+- import 会预先加载，优先执行，与位置无关
 
 ## 其他
 ### 1. [隐式转换](https://github.com/chun1hao/MyBlog/issues/2)
