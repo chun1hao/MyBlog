@@ -530,3 +530,37 @@ arr2[Symbol.isConcatSpreadable] = false;
 - Symbol.toStringTag：指向一个函数，当实例对象被Object.prototype.toString()调用时其返回值会出现在toString()返回的字符串之中表示对象的类型
 - Symbol.unscopables：指向一个对象，指定使用with时哪些属性会被with环境排除
 
+## 10. set
+特性：类似于数组，但是没有重复值
+声明：new Set()
+参数：具有Iterator接口的数据结构
+属性：
+- Set.prototype.constructor：构造函数，默认就是Set函数
+- Set.prototype.size：返回成员个数
+方法：
+- Set.prototype.add(value)：新增
+```
+新增 NaN 会认为是相同的值
+新增 对象 都是不同的值
+不会有类型转换 5 !== "5"
+```
+- Set.prototype.delete(value)：删除指定value,返回true/false，表示删除是否成功
+- Set.prototype.has(value)：查询是否有value，返回true/false
+- Set.prototype.clear()：删除所有，无返回值
+- Set.prototype.keys()：返回键名的遍历器
+- Set.prototype.values()：返回键值的遍历器
+```
+由于set没有键名，只有键值，故keys()和values() 返回的结果一致
+```
+- Set.prototype.entries()：返回键值对的遍历器
+```
+let set = new Set(['a','b','c'])
+for(let i of ser.entries()){
+  console.log(i)
+}
+// ['a','a']
+// ['b','b']
+// ['c','c']
+```
+- Set.prototype.forEach()：使用回调函数遍历每个成员
+
