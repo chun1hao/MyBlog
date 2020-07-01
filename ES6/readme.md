@@ -1,4 +1,4 @@
-### 对ES6-ES10的一个简单的总结
+### 对ES6-ES11的一个简单的总结
 
 主要参考 [《ES6 入门教程》](https://es6.ruanyifeng.com/)
 
