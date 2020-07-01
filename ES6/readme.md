@@ -576,3 +576,31 @@ WeakSet 中的对象都是弱引用，垃圾回收机制不考虑 WeakSet 对该
 
 可以用来储存DOM节点：DOM节点被移除时自动释放此成员，不用担心这些节点从文档移除时会引发内存泄漏，
 也可以临时存放一组对象或存放跟对象绑定的信息：只要这些对象在外部消失，它在WeakSet结构中的引用就会自动取消
+
+## 12. Map
+键值对的集合，键可以是类型的值
+声明：const set = new Map(arr)
+参数：具有Iterator接口且每个成员都是一个双元素数组的数据结构
+属性：
+- constructor：构造函数，返回Map
+- size：返回 Map 结构的成员总数
+- 新增：Map.prototype.set(key, value)
+- Map.prototype.delete(key, value)：删除某个键，返回true。如果删除失败，返回false
+- Map.prototype.get(key)：返回key对应的value，如果没有返回undefined
+- Map.prototype.has(key)：返回Boolean，是否有某个key
+- Map.prototype.clear()：清除所有成员，无返回值
+- Map.prototype.keys()：返回键名的遍历器
+- Map.prototype.values()：返回键值的遍历器
+- Map.prototype.entries()：返回所有成员的遍历器
+- Map.prototype.forEach()：遍历 Map 的所有成员
+
+**对同一个对象的引用，被视为一个键**
+**map和set 的遍历顺序就是插入顺序 **
+
+
+
+
+
+
+
+
