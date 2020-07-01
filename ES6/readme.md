@@ -564,7 +564,7 @@ for(let i of ser.entries()){
 ```
 - Set.prototype.forEach()：使用回调函数遍历每个成员
 
-## 10. WeakSet
+## 11. WeakSet
 - WeakSet.prototype.add()：添加值，返回实例
 - WeakSet.prototype.delete()：删除值，返回布尔
 - WeakSet.prototype.has()：检查值，返回布尔
