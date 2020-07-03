@@ -750,4 +750,4 @@ Object.setPrototypeOf(proxy, proto);
 - preventExtensions()：拦截对象不可扩展设置Object.preventExtensions()，返回布尔
 - ownKeys()：拦截对象属性遍历for-in、Object.keys()、Object.getOwnPropertyNames()、Object.getOwnPropertySymbols()，返回数组
 
-
+## 15.Reflect
