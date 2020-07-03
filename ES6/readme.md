@@ -623,6 +623,7 @@ let p = new Proxy(target, handler);
 ```
 target 为需要代理的对象，可以是任何类型的对象，包括原生数组，函数，甚至另一个代理
 handler 自定义代理的行为
+p 的 this 指向 proxy 代理
 方法：
 - Proxy.revocable()：返回可取消的Proxy实例(返回{ proxy, revoke }，通过revoke()取消代理)
 ```
@@ -670,7 +671,83 @@ let proxy = new Proxy(fn,{
 fn('ch') // "hello ch"
 proxy('ch') // "goodbye  ch"
 ```
+- has()：拦截对象属性检查k in obj，返回布尔(for ... in 不生效)
+```
+let obj = {
+  age: 18,
+  name: 'lisi'
+}
+let proxy = new Proxy(obj,{
+  has(target, key){
+    if(key == 'age'){
+      return false
+    }
+    return key in target
+  }
+})
+'age' in proxy // false
+'name' in proxy // true
+```
+- construct()：拦截 new 命令，必须返回一个对象
+```
+var p = new Proxy(function () {}, {
+  construct: function(target, args) {
+    return { value: args[0] * 10 };
+  }
+});
 
-
+(new p(1)).value  // 10
+```
+- deleteProperty()：拦截对象属性删除delete obj[k]，返回布尔
+```
+let obj = {
+  name: 'zhangsan',
+  age: 20
+}
+let proxy = new Proxy(obj,{
+  deleteProperty(target, key){
+    if(key == 'age') return false
+    delete target[key]
+    return true
+  }
+})
+delete proxy.age // false
+proxy // {name: "zhangsan", age: 20}
+```
+- defineProperty()：拦截对象属性定义Object.defineProperty()、Object.defineProperties()，返回布尔
+```
+var proxy = new Proxy({}, {
+  defineProperty (target, key, descriptor) {
+    return false;
+  }
+});
+proxy.foo = 'bar' // 不会生效
+```
+- getOwnPropertyDescriptor()：拦截对象属性描述读取Object.getOwnPropertyDescriptor()，返回对象
+- getPrototypeOf()：拦截对象原型读取instanceof、Object.getPrototypeOf()、Object.prototype.__proto__、Object.prototype.isPrototypeOf()、Reflect.getPrototypeOf()，返回对象
+```
+var proto = {};
+var p = new Proxy({}, {
+  getPrototypeOf(target) {
+    return proto;
+  }
+});
+Object.getPrototypeOf(p) === proto // true
+```
+- setPrototypeOf(): 拦截对象原型设置Object.setPrototypeOf()，返回布尔
+```
+var handler = {
+  setPrototypeOf (target, proto) {
+    throw new Error('Changing the prototype is forbidden');
+  }
+};
+var proto = {};
+var target = function () {};
+var proxy = new Proxy(target, handler);
+Object.setPrototypeOf(proxy, proto);
+```
+- isExtensible()：拦截对象是否可扩展读取Object.isExtensible()，返回布尔
+- preventExtensions()：拦截对象不可扩展设置Object.preventExtensions()，返回布尔
+- ownKeys()：拦截对象属性遍历for-in、Object.keys()、Object.getOwnPropertyNames()、Object.getOwnPropertySymbols()，返回数组
 
 
