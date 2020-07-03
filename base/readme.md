@@ -253,6 +253,18 @@ console.log(data)  // {default: function default(),c:'aaa' }
 ```
 - import 会预先加载，优先执行，与位置无关
 
+## 16. Object.isExtensible()、Object.preventExtensions()
+- Object.isExtensible(),判断对象是否可用扩展，即添加新的属性
+- Object.preventExtensions()，阻止对象进行扩展
+```
+// 字面量方式定义的对象默认是可扩展的.
+var empty = {};
+Object.isExtensible(empty) //=== true
+ 
+Object.preventExtensions(empty);
+Object.isExtensible(empty) //=== false
+```
+
 ## 其他
 ### 1. [隐式转换](https://github.com/chun1hao/MyBlog/issues/2)
 ### 2. [闭包](https://github.com/chun1hao/MyBlog/issues/3)
