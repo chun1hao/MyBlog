@@ -751,3 +751,41 @@ Object.setPrototypeOf(proxy, proto);
 - ownKeys()：拦截对象属性遍历for-in、Object.keys()、Object.getOwnPropertyNames()、Object.getOwnPropertySymbols()，返回数组
 
 ## 15.Reflect
+定义：保持Object方法的默认行为
+方法
+- get(target, name, receiver)：返回 target 对象的 name 属性
+- set(target, name, value)：设置 target 对象返回 target 对象的 name 属性属性为 value，返回布尔
+- has(target, name)：检查 target 对象是否有 name 属性，返回布尔，等同于 in 操作符
+- deleteProperty(target, name)：删除 target 对象 name 属性，返回布尔，等同于 delete
+- defineProperty(target, propertyKey, attributes)：定义对象属性，返回布尔，Object.defineProperty
+- ownKeys(target)：返回对象的属性，返回数组(Object.getOwnPropertyNames()+Object.getOwnPropertySymbols())
+- getOwnPropertyDescriptor(obj, key)：返回对象属性描述，返回对象 Object.getOwnPropertyDescriptor
+- getPrototypeOf(obj)：返回对象原型，返回对象，等同于Object.getPrototypeOf(obj)
+- setPrototypeOf(obj, newProto)：设置对象原型，返回布尔，等同于Object.setPrototypeOf(obj, newProto)
+- isExtensible(obj)：返回对象是否可扩展，返回布尔 Object.isExtensible()
+- preventExtensions(target)：设置对象不可扩展，返回布尔,Object.preventExtensions(target)
+- apply(func, thisArg, args)：绑定this后执行指定函数
+- construct(target, args)：调用构造函数创建实例，等同于 new target(...args)
+设计目的
+1. 将Object属于语言内部的方法放到Reflect上
+2. 将某些Object方法报错情况改成返回false
+3. 让Object操作变成函数行为
+4. Proxy与Reflect相辅相成
+与Proxy配合使用，Proxy 负责拦截赋值操作，Reflect 负责完成赋值操作
+```
+const observerQueue = new Set();
+const observe = fn => observerQueue.add(fn);
+const observable = obj => new Proxy(obj, {
+    set(tgt, key, val, receiver) {
+        const result = Reflect.set(tgt, key, val, receiver);
+        observerQueue.forEach(v => v());
+        return result;
+    }
+});
+
+const person = observable({ age: 25, name: "Yajun" });
+const print = () => console.log(`${person.name} is ${person.age} years old`);
+observe(print);
+person.name = "Joway";
+```
+
