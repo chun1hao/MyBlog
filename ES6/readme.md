@@ -616,6 +616,61 @@ WeakMap结构与Map结构类似，也是用于生成键值对的集合
 **即使在外部消除了成员键的引用，内部的成员值依然存在**
 
 ## 14. Proxy
+对象用于定义基本操作的自定义行为（如属性查找、赋值、枚举、函数调用等）
+语法：
+```
+let p = new Proxy(target, handler);
+```
+target 为需要代理的对象，可以是任何类型的对象，包括原生数组，函数，甚至另一个代理
+handler 自定义代理的行为
+方法：
+- Proxy.revocable()：返回可取消的Proxy实例(返回{ proxy, revoke }，通过revoke()取消代理)
+```
+let {proxy, revoke} = Proxy.revocable({},{})
+proxy.a = 123
+proxy.a // 123
+revoke()
+proxy.a // TypeError
+```
+拦截操作：
+- get()：拦截对象属性读取
+```
+let proxy = new Proxy({},{
+  get(target, propKey){
+    return propKey == 'name' ? 'lisi' : ''
+  }
+})
+proxy.name // 'lisi'
+proxy.age // ''
+let p = Object.create(proxy) // 可以继承
+p.name // 'lisi'
+```
+- set()：拦截对象属性设置，返回布尔
+```
+let proxy = new Proxy({},{
+  set(target, propKey, value){
+    target[propKey] = value + 10
+  }
+})
+proxy.name = 10
+proxy.name // 20
+
+// 如果目标对象自身的某个属性，不可写且不可配置，那么set方法将不起作用
+```
+- apply()：拦截函数的调用，包括call、apply
+```
+function fn(name){
+  return `hello ${name}` 
+}
+let proxy = new Proxy(fn,{
+  apply(target, ctx, args){
+    return `goodbye  ${args}`
+  }
+})
+fn('ch') // "hello ch"
+proxy('ch') // "goodbye  ch"
+```
+
 
 
 
