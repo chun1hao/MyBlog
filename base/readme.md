@@ -255,6 +255,7 @@ console.log(data)  // {default: function default(),c:'aaa' }
 
 ## 16. Object.isExtensible()、Object.preventExtensions()
 - Object.isExtensible(),判断对象是否可用扩展，即添加新的属性
+冻结（Object.freeze，现有属性不能更改，浅冻结）、密封（Object.seal，阻止添加新属性并将所有现有属性标记为不可配置-Object.defineProperty 不能操作，当前已有的属性可以修改值）不可扩展
 - Object.preventExtensions()，阻止对象进行扩展
 ```
 // 字面量方式定义的对象默认是可扩展的.
