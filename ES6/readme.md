@@ -766,6 +766,7 @@ Object.setPrototypeOf(proxy, proto);
 - preventExtensions(target)：设置对象不可扩展，返回布尔,Object.preventExtensions(target)
 - apply(func, thisArg, args)：绑定this后执行指定函数
 - construct(target, args)：调用构造函数创建实例，等同于 new target(...args)
+
 设计目的
 1. 将Object属于语言内部的方法放到Reflect上
 2. 将某些Object方法报错情况改成返回false
