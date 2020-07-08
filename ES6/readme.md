@@ -750,6 +750,9 @@ Object.setPrototypeOf(proxy, proto);
 - preventExtensions()：拦截对象不可扩展设置Object.preventExtensions()，返回布尔
 - ownKeys()：拦截对象属性遍历for-in、Object.keys()、Object.getOwnPropertyNames()、Object.getOwnPropertySymbols()，返回数组
 
+proxy 相对 defineProperty 优势
+defineProperty 需要对对象中的每个属性都监听，所以对新增属性不行，数组监听也不全
+
 ## 15.Reflect
 定义：保持Object方法的默认行为
 方法
