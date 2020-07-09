@@ -274,5 +274,6 @@ Object.isExtensible(empty) //=== false
 ### 4. [Event loop](https://github.com/chun1hao/MyBlog/issues/5)
 ### 5. [this](https://github.com/chun1hao/MyBlog/issues/6)
 ### 6. [拷贝](https://github.com/chun1hao/MyBlog/issues/7)
-### 7. [ES6简单总结](https://github.com/chun1hao/MyBlog/blob/master/ES6/readme.md)
+### 7. [防抖、节流](https://github.com/chun1hao/MyBlog/issues/8)
+### 8. [ES6简单总结](https://github.com/chun1hao/MyBlog/blob/master/ES6/readme.md)
 
