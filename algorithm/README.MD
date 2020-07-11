@@ -57,3 +57,9 @@ for(let i=0;i<n;i++){
 
 ![image](https://github.com/chun1hao/MyBlog/blob/master/algorithm/%E5%A4%8D%E6%9D%82%E5%BA%A6.png)
   
+小总结：
+1. 在所有排序中，快速排序是最快的排序方法
+2. 近乎有序的，可以选择插入排序
+3. 取值范围有限（跨度不大的情况），可以选择计数排序
+4. 如果需要稳定排序，可以归并排序
+5. 如果有大量重复元素，可以选择三路快排
