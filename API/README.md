@@ -1,4 +1,4 @@
-# 一些原生API的实现
+# 一些原生API的简单实现
 
 ### [promise](https://github.com/chun1hao/MyBlog/tree/master/Promise)
 ### [数组相关](https://github.com/chun1hao/MyBlog/blob/master/API/array.js)
