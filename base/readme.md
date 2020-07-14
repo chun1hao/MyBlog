@@ -51,7 +51,7 @@ function f1(f){
 f1(f2) // x is not defined
 ```
 
-## 4. null 不是对象，typeof null === 'object' 是js的bug
+## 4. null 不是对象，typeof null === 'object' 是 js 的bug
 
 ## 5. '1'.toString() 运行过程
 ```
