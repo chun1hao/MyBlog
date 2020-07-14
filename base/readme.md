@@ -77,9 +77,10 @@ instanceof 基于原型链查询，只要处于原型链中，都返回true
 
 ## 7. Object.is 和 ===
 
-Object.is修复了===一些错误
+Object.is 修复了 === 一些错误
 ```
--0 === +0 // true NaN === NaN // false
+-0 === +0 // true 
+NaN === NaN // false
 Object.is(-0, +0) // false
 Object.is(NaN, NaN) // true
  ```   
