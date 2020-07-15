@@ -275,7 +275,10 @@ Object.isExtensible(empty) //=== false
 function memoize(fn) {
     var cache = {}
     return function(){
-        var key = arguments.length + Array.prototype.join.call(arguments, ',');
+        // 权威指南
+        // 对于参数如果是对象的情况，会出错（对象转化为字符串都是 [Object object]）
+        // var key = JSON.stringify(arguments)
+        var key = arguments.length + Array.prototype.join.call(arguments, ',');        
         if(key in cache){
             return cache[key]
         }else{
