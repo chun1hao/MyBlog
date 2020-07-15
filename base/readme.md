@@ -278,7 +278,7 @@ function memoize(fn) {
     return function(){
         // 权威指南
         // 对于参数如果是对象的情况，会出错（对象转化为字符串都是 [object Object]）
-        // var key = JSON.stringify(arguments)
+        // var key = arguments.length + JSON.stringify(arguments)
         var key = arguments.length + Array.prototype.join.call(arguments, ',');        
         if(key in cache){
             return cache[key]
