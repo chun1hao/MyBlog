@@ -292,12 +292,21 @@ function memoize(fn) {
 ## 18. 乱序
 用于打乱数组
 ```
-function fn(arr){
+function shuffle(arr){
     arr.sort(function(){
         // 随机获得一个正数、负数或者0，正数降序，负数升序，0不变
         return Math.random() - 0.5;
     });
     return arr
+}
+
+// 打乱的更加彻底
+function shuffle(a) {
+    for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+    }
+    return a;
 }
 ```
 
