@@ -268,6 +268,23 @@ Object.preventExtensions(empty);
 Object.isExtensible(empty) //=== false
 ```
 
+## 17. 函数记忆
+函数记忆：将每次的计算结果都缓存起来，当再次调用时，如果遇到相同的参数，就直接返回缓存中的结果
+实现：将参数及结果保存在一个对象中
+```
+function memoize(fn) {
+    var cache = {}
+    return function(){
+        var key = arguments.length + Array.prototype.join.call(arguments, ',');
+        if(key in cache){
+            return cache[key]
+        }else{
+            return cache[key] = fn.apply(this, arguments)
+        }
+    }
+}
+```
+
 ## 其他
 ### 1. [隐式转换](https://github.com/chun1hao/MyBlog/issues/2)
 ### 2. [闭包](https://github.com/chun1hao/MyBlog/issues/3)
