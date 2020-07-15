@@ -289,6 +289,18 @@ function memoize(fn) {
 }
 ```
 
+## 18. 乱序
+用于打乱数组
+```
+function fn(arr){
+    arr.sort(function(){
+        return Math.random() - 0.5;
+    });
+    return arr
+}
+```
+
+
 ## 其他
 ### 1. [隐式转换](https://github.com/chun1hao/MyBlog/issues/2)
 ### 2. [闭包](https://github.com/chun1hao/MyBlog/issues/3)
