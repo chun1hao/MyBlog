@@ -308,6 +308,8 @@ function shuffle(a) {
     }
     return a;
 }
+
+// 鉴于非酋体质，最后还是需要判断一次
 ```
 
 
