@@ -294,6 +294,7 @@ function memoize(fn) {
 ```
 function fn(arr){
     arr.sort(function(){
+        // 随机获得一个正数、负数或者0，正数降序，负数升序，0不变
         return Math.random() - 0.5;
     });
     return arr
