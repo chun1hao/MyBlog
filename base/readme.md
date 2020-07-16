@@ -322,5 +322,6 @@ function shuffle(a) {
 ### 6. [拷贝](https://github.com/chun1hao/MyBlog/issues/7)
 ### 7. [防抖、节流](https://github.com/chun1hao/MyBlog/issues/8)
 ### 8. [柯里化、偏函数](https://github.com/chun1hao/MyBlog/issues/9)
-### 9. [ES6简单总结](https://github.com/chun1hao/MyBlog/blob/master/ES6/readme.md)
+### 9. [函数组合](https://github.com/chun1hao/MyBlog/issues/10)
+### 10. [ES6简单总结](https://github.com/chun1hao/MyBlog/blob/master/ES6/readme.md)
 
