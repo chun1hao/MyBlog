@@ -313,7 +313,8 @@ function shuffle(a) {
 ```
 
 
-## 其他
+## 记录一需要掌握的知识点，持续更新中
+
 ### 1. [隐式转换](https://github.com/chun1hao/MyBlog/issues/2)
 ### 2. [闭包](https://github.com/chun1hao/MyBlog/issues/3)
 ### 3. [继承](https://github.com/chun1hao/MyBlog/issues/4)
