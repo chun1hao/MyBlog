@@ -1,6 +1,6 @@
 ## 记录一需要掌握的知识点，持续更新中
 
-### 1. [隐式转换](https://github.com/chun1hao/MyBlog/issues/2)
+### 1. [杂项](https://github.com/chun1hao/MyBlog/tree/master/base)
 ### 2. [隐式转换](https://github.com/chun1hao/MyBlog/issues/2)
 ### 3. [闭包](https://github.com/chun1hao/MyBlog/issues/3)
 ### 4. [继承](https://github.com/chun1hao/MyBlog/issues/4)
