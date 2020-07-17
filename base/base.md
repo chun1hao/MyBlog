@@ -318,7 +318,7 @@ Intl.NumberFormat是对语言敏感的格式化数字类的构造器类
 ```
 new Intl.NumberFormat([locales[, options]])
 // locales: 缩写语言代码
-// options有 
+// options 可配置 
 // style：指定数字的格式样式，decimal：纯数字格式 （默认值），currency：货币格式，percen：百分比格式
 // currency：在货币格式化中使用的货币符号，USD：美元，EUR：欧元，CNY：人民币
 // useGrouping：是否使用分组分隔符，默认为true
@@ -327,6 +327,26 @@ var number = 123456.789;
 var result = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'USD' }).format(number);
 console.log(result); // $123,456.79
 ```
+Intl.DateTimeFormat是根据语言来格式化日期和时间的对象的构造器。
+```
+new Intl.DateTimeFormat([locales[, options]])
+// locales: 缩写语言代码
+// options 可配置 
+// timeZone：使用的时区. 这唯一的值实现必须被标准世界时间(UTC)所识别。默认值是运行时的默认时区
+// hour12：是否使用12小时时间制(而不是24小时的时间). true 或 false，中国地区的默认值为true
+
+const date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
+console.log(new Intl.DateTimeFormat('en-US').format(date));
+// expected output: "12/20/2012"
+
+console.log(new Intl.DateTimeFormat('en-GB').format(date));
+// expected output: "20/12/2012"
+
+// Include a fallback language, in this case Indonesian
+console.log(new Intl.DateTimeFormat(['ban', 'id']).format(date));
+// expected output: "20/12/2012"
+```
+[参考](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)
 
 
 
