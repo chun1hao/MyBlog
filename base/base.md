@@ -325,7 +325,7 @@ new Intl.NumberFormat([locales[, options]])
 
 var number = 123456.789;
 var result = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'USD' }).format(number);
-console.log(result);
+console.log(result); // $123,456.79
 ```
 
 
