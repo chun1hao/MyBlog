@@ -311,3 +311,23 @@ function shuffle(a) {
 
 // 鉴于非酋体质，最后还是需要判断一次
 ```
+
+## 19. Intl
+Intl 对象是 ECMAScript 国际化 API 的一个命名空间，它提供了精确的字符串对比、数字格式化，和日期时间格式化
+Intl.NumberFormat是对语言敏感的格式化数字类的构造器类
+```
+new Intl.NumberFormat([locales[, options]])
+// locales: 缩写语言代码
+// options有 
+// style：指定数字的格式样式，decimal：纯数字格式 （默认值），currency：货币格式，percen：百分比格式
+// currency：在货币格式化中使用的货币符号，USD：美元，EUR：欧元，CNY：人民币
+// useGrouping：是否使用分组分隔符，默认为true
+
+var number = 123456.789;
+var result = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'USD' }).format(number);
+console.log(result);
+```
+
+
+
+
