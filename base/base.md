@@ -394,3 +394,28 @@ a <   c // true
 // == === 都是比较内存地址，> < 从第一项还是比较
 ```
 
+## 23. arguments
+当非严格模式中的函数没有包含剩余参数(...rest)、默认参数和解构赋值，那么arguments对象中的值会跟踪参数的值（反之亦然）
+```
+function sidEffecting(ary) {
+    ary[0] = ary[2];
+}
+function bar(a, b, c) {
+    c = 10
+    sidEffecting(arguments);
+    return a + b + c;
+}
+console.log(bar(2, 2, 2)) // 22
+```
+当非严格模式中的函数有包含剩余参数、默认参数和解构赋值，那么arguments对象中的值不会跟踪参数的值（反之亦然）
+```
+function sidEffecting(ary) {
+    ary[0] = ary[2];
+}
+function bar(a, b, c = 6) {
+    c = 10
+    sidEffecting(arguments);
+    return a + b + c;
+}
+console.log(bar(3, 3, 3)) // 16
+```
