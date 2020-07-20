@@ -220,21 +220,25 @@
     }
 
     MyPromise.allSettled = function(promises){
-        var len = promises.len, result = new Array(len), resolveCount = 0;
+        var len = promises.length, result = new Array(len), resolveCount = 0;
         return new MyPromise(function(resolve){
             if(!len) return resolve([]);
             for(var i=0; i<len; i++){                
                 MyPromise.resolve(promises[i]).then(function(v){
                     resolveCount++;
                     result[i] = {ststus: 'fulfilled', value: v}
+                    if(len === resolveCount){
+                        resolve(result);
+                    }
                 }, function (e) {
                     resolveCount++;
                     result[i] = {ststus: 'rejected', value: e}
+                    if(len === resolveCount){
+                        resolve(result);
+                    }
                 })
             } 
-            if(len === resolveCount){
-                resolve(result);
-            }
+            
         })
     }
 
