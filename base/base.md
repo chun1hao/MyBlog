@@ -348,6 +348,17 @@ console.log(new Intl.DateTimeFormat(['ban', 'id']).format(date));
 ```
 [参考](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat)
 
+## 20.连续赋值
+```
+let a = {n : 1};
+let b = a;
+a.x = a = {n: 2};
 
+
+console.log(a.x) // undefined
+console.log(b.x) // {n: 2}
+// 执行 b = a 之后，a b 指向同一块内存地址 {n : 1}
+// a.x = a = {n: 2};  按照优先级 先执行 . 运算符，在 之前a 和 b  指向的内存，增加了一个 x 属性，然后赋值由右向左， a 指向一个新的内存地址 {n: 2}，且之前a 和 b  指向的内存的 x 属性 等于{n:2 }
+```
 
 
