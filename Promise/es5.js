@@ -4,6 +4,7 @@
 
         t.data = null;
         t.status = 'pending';
+        
         /*一个promise可以有多个回调
         var x1 = new Promise(...).then(...)
         var x2 = new Promise(...).then(...)
