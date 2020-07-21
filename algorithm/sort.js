@@ -14,6 +14,27 @@ function bubbleSort(arr){
   return arr
 }
 
+// 冒泡优化，在每趟排序中进行正向和反向两遍冒泡的方法一次可以得到两个最终值(最大者和最小者)
+function bubbleSort(arr){
+  let len = arr.length, l = 0,h = len - 1
+  while(l<h){
+      // 将最大值，冒泡到最后面
+      for(let i = l; i< h;i++){
+          if(arr[i]>arr[i+1]){
+              [arr[i],arr[i+1]] = [arr[i+1],arr[i]]
+          }            
+      }
+      h--
+      // // 将最小值，冒泡到最前面
+      for(let i = h; i > l;i--){
+          if(arr[i] < arr[i-1]){
+              [arr[i],arr[i-1]] = [arr[i-1],arr[i]]
+          }            
+      }
+      l++
+  }
+}
+
 // 选择排序：每次都找一个最大或者最小的排在开始
 // 选择排序不需要额外空间，是本地排序，是不稳定排序，时间复杂度为O(n^2)
 function selectionSort(arr){
