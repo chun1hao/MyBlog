@@ -36,7 +36,8 @@ function bubbleSort(arr){
 }
 
 // 选择排序：每次都找一个最大或者最小的排在开始
-// 选择排序不需要额外空间，是本地排序，是不稳定排序，时间复杂度为O(n^2)
+// 选择排序不需要额外空间，是本地排序，是不稳定排序，时间复杂度稳定为O(n^2)
+// 在数据规模小的时候可以选择
 function selectionSort(arr){
     for(let i=0;i<arr.length-1;i++){
         let minIdx = i
