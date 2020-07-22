@@ -122,13 +122,7 @@ function merge(left, right){
       }
   }
   // 处理剩余元素，只会有一个还存在元素
-  if(left.length){
-      result.push(...left)
-  }
-  if(right.length){
-      result.push(...right)
-  }
-  return result
+  return result.concat(left).concat(right)
 }
 // 递归
 function mergeSort(arr){
