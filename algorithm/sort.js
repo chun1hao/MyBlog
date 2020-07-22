@@ -170,6 +170,7 @@ function quickSort(arr){
   }
   return quickSort(min).concat(pivot, quickSort(max))
 }
+// 三路快排：分成三个，大于基准、小于基准和等于基准
 
 // 堆排序
 // 堆排序不需要额外空间，本地排序，空间复杂度为O(1)，时间复杂度为O(nlogn)，不稳定
