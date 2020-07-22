@@ -116,7 +116,8 @@ function merge(left, right){
   let j=0
   let res = []
   while(i<left.length && j<right.length){
-    if(left[i]<right[j]){
+    // 注意此处是 <= ,否则排序不稳定
+    if(left[i]<=right[j]){
       res.push(left[i++])
     }else{
       res.push(right[j++])
