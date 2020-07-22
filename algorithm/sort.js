@@ -149,16 +149,18 @@ function mergeSort(arr){
 // 快速排序：同归并，也是分而治之的排序
 // 先找基准，然后分隔为两个数组，再在分隔的数组中找基准，继续分隔到只有一个元素
 // 快速排序需要额外空间，复杂度为O(n)，时间复杂度为O(nlogn)，不稳定
-function quickSort(arr){  
-  if(arr.length<2) {
+function quickSort(arr){
+  let len = arr.length
+  if(len<2) {
     return arr
   }
   // 找到基准，并从原数组删除
-  let pivotIndex = Math.floor(arr.length/2) 
+  let pivotIndex = Math.floor(len/2) 
   let pivot = arr.splice(pivotIndex,1)[0]  
 
   let min = []
   let max = []  
+  // 不能使用len，有删除元素
   for(let i=0;i<arr.length;i++){
     if(arr[i]>pivot){
       max.push(arr[i])
