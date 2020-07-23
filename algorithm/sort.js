@@ -156,12 +156,12 @@ function quickSort(arr){
   }
   // 找到基准，并从原数组删除
   let pivotIndex = Math.floor(len/2) 
-  let pivot = arr.splice(pivotIndex,1)[0]  
+  let pivot = arr[pivotIndex]  
 
   let min = []
   let max = []  
-  // 不能使用len，有删除元素
-  for(let i=0;i<arr.length;i++){
+  for(let i=0;i<len;i++){
+    if(i===pivotIndex) continue
     if(arr[i]>pivot){
       max.push(arr[i])
     }else{
@@ -213,6 +213,8 @@ function quickSort(arr, start = 0, end = arr.length - 1){
   }    
   return arr
 }
+// 简易版
+const quickSort = arr=> arr.length > 1 ? [...quickSort(arr.filter(i=>i<arr[0])), ...arr.filter(i=>i==arr[0]),...quickSort(arr.filter(i=>i>arr[0]))]:arr
 
 // 堆排序
 // 堆排序不需要额外空间，本地排序，空间复杂度为O(1)，时间复杂度为O(nlogn)，不稳定
