@@ -170,6 +170,27 @@ function quickSort(arr){
   }
   return quickSort(min).concat(pivot, quickSort(max))
 }
+// 快排优化：原地排序
+// 已最后一个元素为基准，创建一个指针 pos，默认值为开始的位置 -1，遇到小于或等于基准的元素 +1，然后交换元素
+// 完成后，已pos将数组分隔为两个数，递归执行
+// 直到 开始 位置大于等于 结束位置，即只有一个元素或0个元素的时候，结束排序
+function quickSort(arr, start = 0, end = arr.length - 1){
+  if(start < end){
+    let pos = start - 1
+    let povit = arr[end]
+    for(let i=start;i<=end;i++){
+      if(arr[i] <= povit){ // 必须是小于等于 否则死循环
+        pos++
+        [arr[i], arr[pos]] = [arr[pos], arr[i]]
+      }
+    }
+    quickSort(arr, start, pos - 1);
+    quickSort(arr, pos + 1 , end);
+  }  
+  return arr
+}
+
+
 // 三路快排：分成三个，大于基准、小于基准和等于基准
 
 // 堆排序
