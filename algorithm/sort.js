@@ -192,11 +192,11 @@ function quickSort(arr, start = 0, end = arr.length - 1){
 // 三路快排：分成三个，大于基准、小于基准和等于基准
 // 原地排序
 function quickSort(arr, start = 0, end = arr.length - 1){
-  let povit = arr[start]
+  let povit = arr[start] // 取第一个为基准
   let leftPos = start - 1
   let rightPos = end + 1
-  if(start<end){
-    for(let i=start+1;i<rightPos;){
+  if(start<end){ // 数组为0或1时，递归结束
+    for(let i=start+1;i<rightPos;){ // 遍历到大于基准的数组开始的位置
       if(arr[i]<povit){
         leftPos++
         [arr[i], arr[leftPos]] = [arr[leftPos], arr[i]]
