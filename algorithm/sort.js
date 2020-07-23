@@ -195,7 +195,7 @@ function quickSort(arr, start = 0, end = arr.length - 1){
   let povit = arr[start]
   let leftPos = start - 1
   let rightPos = end + 1
-  if(leftPos<rightPos){
+  if(start<end){
     for(let i=start+1;i<rightPos;){
       if(arr[i]<povit){
         leftPos++
@@ -208,8 +208,8 @@ function quickSort(arr, start = 0, end = arr.length - 1){
         i++
       }
     }
-    quickSort(arr, 0, leftPos - 1)
-    quickSort(arr, rightPos + 1, end)
+    quickSort(arr, 0, leftPos)
+    quickSort(arr, rightPos, end)
   }    
   return arr
 }
