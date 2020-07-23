@@ -189,9 +189,30 @@ function quickSort(arr, start = 0, end = arr.length - 1){
   }  
   return arr
 }
-
-
 // 三路快排：分成三个，大于基准、小于基准和等于基准
+// 原地排序
+function quickSort(arr, start = 0, end = arr.length - 1){
+  let povit = arr[start]
+  let leftPos = start - 1
+  let rightPos = end + 1
+  if(leftPos<rightPos){
+    for(let i=start+1;i<rightPos;){
+      if(arr[i]<povit){
+        leftPos++
+        [arr[i], arr[leftPos]] = [arr[leftPos], arr[i]]
+        i++
+      }else if(arr[i]>povit){
+        rightPos--
+        [arr[i], arr[rightPos]] = [arr[rightPos], arr[i]]
+      }else{
+        i++
+      }
+    }
+    quickSort(arr, 0, leftPos - 1)
+    quickSort(arr, rightPos + 1, end)
+  }    
+  return arr
+}
 
 // 堆排序
 // 堆排序不需要额外空间，本地排序，空间复杂度为O(1)，时间复杂度为O(nlogn)，不稳定
