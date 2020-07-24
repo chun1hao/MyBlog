@@ -208,7 +208,7 @@ function quickSort(arr, start = 0, end = arr.length - 1){
         i++
       }
     }
-    quickSort(arr, 0, leftPos)
+    quickSort(arr, start, leftPos)
     quickSort(arr, rightPos, end)
   }    
   return arr
