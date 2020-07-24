@@ -373,7 +373,7 @@ function getPositionNum(num, i){
 }
 function radixSort(arr){
     let max = arr[0]
-    let min = arr[0]
+    let min = arr[0] // 用于处理负数
     for(let i=0;i<arr.length;i++){
         max = max < arr[i] ? arr[i] : max
         min = min > arr[i] ? arr[i] : min
@@ -383,8 +383,9 @@ function radixSort(arr){
     for(let k=1;k<=maxLen;k++){
         for(let j=0;j<arr.length;j++){
             // - min 是处理负数的情况
-            let idx = getPositionNum(arr[j]-min, k)
-            buckets[idx].push(arr[j] - min)
+            let current = arr[j]-min
+            let idx = getPositionNum(current, k)
+            buckets[idx].push(current)
         }
         let index = 0
         for(let i=0;i<buckets.length;i++){
