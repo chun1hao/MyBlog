@@ -321,7 +321,7 @@ function bucketSort(arr, num = 5){
     max = arr[i] > max ? arr[i] : max
   } 
   
-  // 计算每个桶放置的数量  
+  // 求出每一个桶的数值范围 
   let count = (max - min + 1)/num 
   while(num){
     buckets.push([])
