@@ -329,6 +329,7 @@ function bucketSort(arr, num = 5){
   }     
   for(let i=0;i<arr.length;i++){
     let current = arr[i]
+    // 计算放置当前元素的桶的下标
     let idx = Math.floor((current - min) / count)
     let A = buckets[idx]
     let _len = A.length     
