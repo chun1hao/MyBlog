@@ -253,6 +253,7 @@ import * as data from './a'
 console.log(data)  // {default: function default(),c:'aaa' }
 ```
 - import 会预先加载，优先执行，与位置无关
+- import 引入的模块是只读的，不能在引入后的文件中修改
 
 ## 16. Object.isExtensible()、Object.preventExtensions()
 - Object.isExtensible(),判断对象是否可用扩展，即添加新的属性
