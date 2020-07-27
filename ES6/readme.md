@@ -294,7 +294,7 @@ for (const match of string.matchAll(regex)) {
 Number.isFinite(15); // true
 Number.isFinite(Infinity); // false
 ```
-- Number.isNaN()：判断是否为NaN，对于非数值返回 false
+- Number.isNaN()：判断是否为数值并且是否为NaN，对于非数值返回 false，isNaN会先转化为数字，如果成功，然后判断是否为NaN，失败则直接返回 false
 - Number.parseInt(), Number.parseFloat()
 ```
 Number.parseInt('12.34') // 12
