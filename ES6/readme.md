@@ -799,4 +799,4 @@ const print = () => console.log(`${person.name} is ${person.age} years old`);
 observe(print);
 person.name = "Joway";
 ```
-
+## 16.Class 继承
