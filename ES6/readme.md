@@ -799,4 +799,21 @@ const print = () => console.log(`${person.name} is ${person.age} years old`);
 observe(print);
 person.name = "Joway";
 ```
-## 16.Class 继承
+## 16.Class 
+基本写法：
+```
+class Add{
+  constructor(x, y){
+    this.x = x
+    this.y = y
+  }
+  sum(){
+    return this.x + this.y
+  }  
+}
+// 同样可以使用 prototype 添加方法，此类方法是不可枚举的，ES5中使用 prototype 添加方法，是可以枚举的
+Add.prototype.sum1 = function(){
+  return this.x * 2 + this.y
+}
+let a = new Add(1,2)
+```
