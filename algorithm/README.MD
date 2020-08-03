@@ -17,6 +17,7 @@ while(number < 100){
     number *= 2
 }
 // 假设循环次数为 x，2^x = n, x = log2n, 即 O(logn)
+// 比如常见的二分查找法
  ```
  - O(n^2): 平方阶
  ```
