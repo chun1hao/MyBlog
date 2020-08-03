@@ -50,6 +50,21 @@ function f1(f){
 }
 f1(f2) // x is not defined
 ```
+同时js也是静态作用域，即函数的作用域在函数定义的时候就决定了
+```
+var value = 1;
+
+function foo() {
+    console.log(value);
+}
+
+function bar() {
+    var value = 2;
+    foo();
+}
+
+bar(); // 1
+```
 
 ## 4. null 不是对象，typeof null === 'object' 是 js 的bug
 
