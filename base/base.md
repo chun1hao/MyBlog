@@ -28,7 +28,7 @@ console.log(p2) // ->  {name: 'aaa',age: 18}
 
 函数test有局部变量obj，接收p1作为参数，即将p1赋值给obj，此时p1和obj指向同一个内存地址，故obj.name 改变后 p1也改变，后将obj指向了一个新的内存地址，与p1的联系断开，新对象在函数结束后该对象被垃圾回收
 
-## 3. js 是词法作用域，当函数内访问变量时，是从声明的位置向上查找，而不是调用时
+## 3. js 是词法作用域，也就是静态作用域，当函数内访问变量时，是从声明的位置向上查找，而不是调用时，且函数的作用域在函数定义的时候就决定了
 ```
 var x = 10
 function f2(){
@@ -49,21 +49,6 @@ function f1(f){
     f()
 }
 f1(f2) // x is not defined
-```
-同时js也是静态作用域，即函数的作用域在函数定义的时候就决定了
-```
-var value = 1;
-
-function foo() {
-    console.log(value);
-}
-
-function bar() {
-    var value = 2;
-    foo();
-}
-
-bar(); // 1
 ```
 
 ## 4. null 不是对象，typeof null === 'object' 是 js 的bug
