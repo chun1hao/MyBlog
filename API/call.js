@@ -6,22 +6,21 @@ Function.prototype.myCall = function(content){
     delete obj.fn
     return res // 函数有返回值
 }
-Function.prototype.myCall = function (context, arr) {
-    var obj = params || window, res, symKey = 'kk' + Math.random(),len = arguments.length
-    while(obj.hasOwnProperty(symKey)){
-        symKey = 'kk' + Math.random()
+Function.prototype.myCall = function(context){
+    var obj = context || window, 
+        name = 'cc' + Math.random(),
+        len = arguments.length,
+        str = '',
+        res;
+    while(obj.hasOwnProperty(name)){
+        name = 'cc' + Math.random()
     }
-    obj[symKey] = this
-    var str = ''
+    obj[name] = this
     for(var i=1;i<len;i++){
-        str += arguments[i] + (i == len -1 ? '' : ',')
+        str += i == len -1 ? arguments[i] : arguments[i] + ','
     }
-    if(len>1){        
-        res = eval('obj[symKey]('+str+')')
-    }else{
-        res = obj[symKey]()
-    }
-    delete obj[symKey]
+    res = eval('obj[name]('+str+')')
+    delete obj[name] 
     return res
 }
 
