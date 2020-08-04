@@ -6,21 +6,7 @@ Function.prototype.myCall = function(content){
     delete obj.fn
     return res // 函数有返回值
 }
-
-// 2. apply
-Function.prototype.myApply = function (context, arr) {
-    var context = context || window;
-    context.fn = this;
-    var result;
-    if (!Array.isArray(arr)) { // 如果arr是null或者undefined 不能...
-        result = context.fn();
-    }else{
-        result = context.fn(...arr)
-    }
-    delete context.fn
-    return result;
-}
-Function.prototype.myApply = function (context, arr) {
+Function.prototype.myCall = function (context, arr) {
     var obj = params || window, res, symKey = 'kk' + Math.random(),len = arguments.length
     while(obj.hasOwnProperty(symKey)){
         symKey = 'kk' + Math.random()
@@ -38,6 +24,21 @@ Function.prototype.myApply = function (context, arr) {
     delete obj[symKey]
     return res
 }
+
+// 2. apply
+Function.prototype.myApply = function (context, arr) {
+    var context = context || window;
+    context.fn = this;
+    var result;
+    if (!Array.isArray(arr)) { // 如果arr是null或者undefined 不能...
+        result = context.fn();
+    }else{
+        result = context.fn(...arr)
+    }
+    delete context.fn
+    return result;
+}
+
 
 // 3.bind 
 // bind() 方法会创建一个新函数。当这个新函数被调用时，bind() 的第一个参数将作为它运行时的 this，之后的一序列参数将会在传递的实参前传入作为它的参数。
