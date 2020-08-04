@@ -154,7 +154,7 @@ function quickSort(arr){
   if(len<2) {
     return arr
   }
-  // 找到基准，并从原数组删除
+  // 基准
   let pivotIndex = Math.floor(len/2) 
   let pivot = arr[pivotIndex]  
 
