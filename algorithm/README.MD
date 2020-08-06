@@ -68,3 +68,19 @@ for(let i=0;i<n;i++){
 4. 取值范围有限（跨度不大的情况），可以选择计数排序
 5. 如果需要稳定排序，可以归并排序
 
+对于有序数组查找是否包含某个元素可以使用二分查找法，其时间复杂度为 O(logn)
+```javascript
+function binarySearch(arr, target){
+    let len= arr.length, l = 0, r = len-1;
+    while(l <= r){
+        let mid = Math.floor((l+r)/2)
+        if(arr[mid] == target){
+            return mid
+        }else if(arr[mid] < target){
+            l = mid + 1
+        }else{
+            r  = mid - 1
+        }
+    }
+}
+```
