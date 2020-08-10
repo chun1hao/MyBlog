@@ -12,7 +12,6 @@
 ### [函数组合](https://github.com/chun1hao/MyBlog/issues/10)
 ### [ES6简单总结](https://github.com/chun1hao/MyBlog/blob/master/ES6/readme.md)
 ### [杂项](https://github.com/chun1hao/MyBlog/blob/master/base/base.md)
-### [浏览器缓存相关](https://github.com/chun1hao/MyBlog/blob/master/ES6/readme.md)
 ### [前端安全](https://github.com/chun1hao/MyBlog/blob/master/base/safety.md)
 ### [网络相关](https://github.com/chun1hao/MyBlog/blob/master/base/http.md)
 
