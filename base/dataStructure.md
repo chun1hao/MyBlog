@@ -3,7 +3,9 @@
 
 ## 2. 队列
 受限的线性表,''受限''体现在只能从表的前端(队头)进行删除,只能从表的后端(队尾)进行插入，**先进先出**
+
 ```javascript
+// 循环队列实现
 class MyCircularQueue{
     // 构造器
     constructor (k) {
