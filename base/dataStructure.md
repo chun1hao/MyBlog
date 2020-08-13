@@ -65,7 +65,8 @@ class MyCircularQueue{
     }
 }
 ```
-3. 
+3. 链表
+
 
 ```javascript
 class Node{
