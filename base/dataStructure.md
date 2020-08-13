@@ -65,3 +65,66 @@ class MyCircularQueue{
     }
 }
 ```
+3. 
+
+```javascript
+class Node{
+    constructor(val, next = null){
+        this.val = val
+        this.next = next
+    }
+}
+class MyLinkedList{
+    constructor(){
+        this.length = 0
+        this.head = null
+    }
+    get(index){ 
+        if(index <0 || index >=this.length) return -1
+        let cur = this.head
+        while(index-- >0){
+            cur = cur.next
+        }
+        return cur.val
+    }
+    addAtHead(val){
+        let node = new Node(val)
+        node.next = this.head
+        this.head = node
+        this.length++
+    }
+    addAtTail(val){
+        let node = new Node(val), cur = this.head
+        while(cur && cur.next){
+            cur = cur.next
+        }
+        cur.next = node
+        this.length++
+    }
+    addAtIndex(index,val){
+        if(index <= 0) return this.addAtHead(val)
+        if(index > this.length) return
+        if(index == this.length) return this.addAtTail(val)
+        let node = new Node(val), cur = this.head
+        while(index-- > 1){
+            cur = cur.next
+        }
+        node.next = cur.next
+        cur.next = node        
+        this.length++
+    }
+    deleteAtIndex(index){
+        if(index <0 || index >= this.length) return 
+        if(index ==0) {
+            this.head = this.head.next            
+        }else{            
+            let cur = this.head
+            while(index-- >1){
+                cur = cur.next
+            }
+            cur.next = cur.next.next
+        }
+        this.length--
+    }
+}
+```
