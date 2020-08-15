@@ -42,32 +42,33 @@ DOM 型 XSS 攻击中，取出和执行恶意代码由浏览器端完成，属�
 攻击者诱导受害者进入第三方网站，在第三方网站中，向被攻击网站发送跨站请求。利用受害者在被攻击网站已经获取的注册凭证，绕过后台的用户验证，达到冒充用户对被攻击的网站执行某项操作的目的。
 
 **攻击流程**
-i）受害者登录 a.com，并保留了登录凭证（Cookie）
-ii）攻击者引诱受害者访问了b.com
-iii）b.com 向 a.com 发送了一个请求：a.com/act=xx浏览器会默认携带a.com的Cookie
-iv）a.com接收到请求后，对请求进行验证，并确认是受害者的凭证，误以为是受害者自己发送的请求
-v）a.com以受害者的名义执行了act=xx
-vi）攻击完成，攻击者在受害者不知情的情况下，冒充受害者，让a.com执行了自己定义的操作
+  i）受害者登录 a.com，并保留了登录凭证（Cookie）
+  ii）攻击者引诱受害者访问了b.com
+  iii）b.com 向 a.com 发送了一个请求：a.com/act=xx浏览器会默认携带a.com的Cookie
+  iv）a.com接收到请求后，对请求进行验证，并确认是受害者的凭证，误以为是受害者自己发送的请求
+  v）a.com以受害者的名义执行了act=xx
+  vi）攻击完成，攻击者在受害者不知情的情况下，冒充受害者，让a.com执行了自己定义的操作
 **攻击类型**
-i）GET型：如在页面的某个 img 中发起一个 get 请求
-ii）POST型：通过自动提交表单到恶意网站
-iii）链接型：需要诱导用户点击链接
+  i）GET型：如在页面的某个 img 中发起一个 get 请求
+  ii）POST型：通过自动提交表单到恶意网站
+  iii）链接型：需要诱导用户点击链接
 **预防方案**
 CSRF通常从第三方网站发起，被攻击的网站无法防止攻击发生，只能通过增强自己网站针对CSRF的防护能力来提升安全性。）
 
-i）同源检测：通过Header中的Origin Header 、Referer Header 确定，但不同浏览器可能会有不一样的实现，不能完全保证
-ii）CSRF Token 校验：将CSRF Token输出到页面中（通常保存在Session中），页面提交的请求携带这个Token，服务器验证Token是否
-正确
-iii）双重cookie验证：
-流程：
-步骤1：在用户访问网站页面时，向请求域名注入一个Cookie，内容为随机字符串（例如csrfcookie=v8g9e4ksfhw）
-步骤2：在前端向后端发起请求时，取出Cookie，并添加到URL的参数中（接上例POST https://www.a.com/comment?csrfcookie=v8g9e4ksfhw）
-步骤3：后端接口验证Cookie中的字段与URL参数中的字段是否一致，不一致则拒绝。
-优点：
-无需使用Session，适用面更广，易于实施。
-Token储存于客户端中，不会给服务器带来压力。
-相对于Token，实施成本更低，可以在前后端统一拦截校验，而不需要一个个接口和页面添加。
-缺点：
+  i）同源检测：通过Header中的Origin Header 、Referer Header 确定，但不同浏览器可能会有不一样的实现，不能完全保证
+  ii）CSRF Token 校验：将CSRF Token输出到页面中（通常保存在Session中），页面提交的请求携带这个Token，服务器验证Token是否
+  正确
+  iii）双重cookie验证：
+
+**流程：**
+  1：在用户访问网站页面时，向请求域名注入一个Cookie，内容为随机字符串（例如csrfcookie=v8g9e4ksfhw）
+  2：在前端向后端发起请求时，取出Cookie，并添加到URL的参数中（接上例POST https://www.a.com/comment?csrfcookie=v8g9e4ksfhw）
+  3：后端接口验证Cookie中的字段与URL参数中的字段是否一致，不一致则拒绝。
+**优点：**
+  无需使用Session，适用面更广，易于实施。
+  Token储存于客户端中，不会给服务器带来压力。
+  相对于Token，实施成本更低，可以在前后端统一拦截校验，而不需要一个个接口和页面添加。
+**缺点：**
 -Cookie中增加了额外的字段。
 -如果有其他漏洞（例如XSS），攻击者可以注入Cookie，那么该防御方式失效。
 -难以做到子域名的隔离。
