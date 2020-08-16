@@ -103,7 +103,7 @@ iv）减少对 iframe 的使用
 说明：
 文件上传类型校验失败后，导致恶意的JS文件上传后，浏览器 Content-Type Header 的默认解析为可执行的 JS 文件
 
-预防方案：
+**预防方案：**
 设置 X-Content-Type-Options 头
 
 5）第三方依赖包
