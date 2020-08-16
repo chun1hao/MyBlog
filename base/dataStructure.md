@@ -66,9 +66,12 @@ class MyCircularQueue{
 }
 ```
 3. 链表
+链表是一种物理存储单元上非连续、非顺序的存储结构，数据元素的逻辑顺序是通过链表中的指针链接次序实现的。链表由一系列结点（链表中每一个元素称为结点）组成，每个结点都包含一个值和一个 next 指针
 
+**单链表**
 
 ```javascript
+// 定义 node 结点
 class Node{
     constructor(val, next = null){
         this.val = val
@@ -80,6 +83,8 @@ class MyLinkedList{
         this.length = 0
         this.head = null
     }
+    
+    // 获取 index 结点的值
     get(index){ 
         if(index <0 || index >=this.length) return -1
         let cur = this.head
@@ -88,12 +93,16 @@ class MyLinkedList{
         }
         return cur.val
     }
+    
+    // 在链表开头新增一个结点
     addAtHead(val){
         let node = new Node(val)
         node.next = this.head
         this.head = node
         this.length++
     }
+    
+    // 在链表末尾新增一个结点
     addAtTail(val){
         let node = new Node(val), cur = this.head
         while(cur && cur.next){
@@ -102,6 +111,8 @@ class MyLinkedList{
         cur.next = node
         this.length++
     }
+    
+    // 在链表 index 处新增一个结点
     addAtIndex(index,val){
         if(index <= 0) return this.addAtHead(val)
         if(index > this.length) return
@@ -114,6 +125,8 @@ class MyLinkedList{
         cur.next = node        
         this.length++
     }
+    
+    // 删除 index 处的结点
     deleteAtIndex(index){
         if(index <0 || index >= this.length) return 
         if(index ==0) {
@@ -129,3 +142,11 @@ class MyLinkedList{
     }
 }
 ```
+
+**双链表**
+
+不同于单链表，其每个结点还包含一个向前的指针
+
+**循环链表**
+
+最后一个结点的 next 不是指向 null，而是指向 head
