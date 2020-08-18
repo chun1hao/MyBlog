@@ -9,18 +9,20 @@ TCP/IP协议族按层次分为以下四层
 - 链路层：处理连接网络的硬件部分，包括控制操作系统、硬件的设备驱动、网卡，及光纤等物理可见部分
 
 ### 报文
-| 通用 | 作用（请求报文和响应报文都可能使用）  |
+整体结构：报文首部 + 空行 + 报文实体
+
+| 通用首部 | 作用（请求报文和响应报文都可能使用）  |
 |  ----  | ----  |
 | Cache-Control  | 控制缓存的行为：no-cache（强制向服务器再次验证）、no-store（不做任何缓存）、max-age=111111（资源可缓存最大时间 秒）、public（客户端、代理服务器都可利用缓存）、private（代理服务器不可用缓存） |
 |  Connection  | 浏览器想要优先使用的连接类型： keep-alive close（开启和关闭持久连接）  |
 |  Date  | 创建报文时间  |
 |  Transfer-Encoding  | 传输编码方式：chunked分块传输  |
 
-| 请求报文 | 作用  |
+| 请求首部 | 作用  |
 |  ----  | ----  |
 |  Accept  | 能正确接收的媒体类型：application/json text/plain  |
 |  Accept-Encoding  | 能正确接收的编码格式列表：gzip deflate  |
-|  Accept-Language  | 能正确接收的语言列表：zh-cn,zh;1=0.9,en,1=0.8  |
+|  Accept-Language  | 能正确接收的语言列表：zh-CN,zh;q=0.9  |
 |  Authorization  | 客户端认证信息：Bearer dSdSdFFlsfdjasd123，一般存token用  |
 |  Cookie  | 发送给服务器的Cookie信息  |
 |  Host  | 服务器的域名，用于区分单台服务器多个域名的虚拟主机，是HTTP/1.1唯一必须包含的字段。  |
@@ -28,15 +30,21 @@ TCP/IP协议族按层次分为以下四层
 |  If-Modified-Since  | 本地资源未修改返回 304（比较时间）  |
 |  If-None-Match  | 本地资源未修改返回 304（比较标记）  |
 |  User-Agent  | 客户端信息，操作系统、浏览器等信息  |
-| Range | 请求某个内容的一部分（断点续传） |
+|  Range | 请求某个内容的一部分（断点续传） |
+|  Referer  | 包含了当前请求页面的来源页面的地址，即表示当前页面是通过此来源页面里的链接进入的  |
 
-| 响应报文 | 作用  |
+| 响应首部 | 作用  |
 |  ----  | ----  |
 |  Accept-Ranges  | 告知客户端服务器是否可接受范围请求，是bytes，否none  |
 |  Age  | 资源在代理缓存中存在的时间  |
 |  ETag  | 资源标识，资源发生变化时标识也会发生改变  |
-|  last-modified  | 服务器认定的资源做出修改的日期及时间  |
 |  Server  | 服务器名字  |
+
+| 实体首部 | 补充请求报文或响应报文相关信息  |
+|  ----  | ----  |
+|  last-modified  | 响应首部，服务器认定的资源做出修改的日期及时间  |
+|  Content-Type  | 内容的媒体类型（'application/json;charset=UTF-8'）  |
+|  Expires  | 内容的过期时间  |
 
 ### 请求方法
 1. get：一般用于请求资源
