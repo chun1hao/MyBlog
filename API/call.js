@@ -10,16 +10,17 @@ Function.prototype.myCall = function(context){
     var obj = context || window, 
         name = 'cc' + Math.random(),
         len = arguments.length,
-        str = '',
+        arr = [],
         res;
     while(obj.hasOwnProperty(name)){
         name = 'cc' + Math.random()
     }
     obj[name] = this
     for(var i=1;i<len;i++){
-        str += i == len -1 ? arguments[i] : arguments[i] + ','
+        arr.push('arguments['+i+'] ')
     }
-    res = eval('obj[name]('+str+')')
+    // eval 中会自动调用 arr.toString
+    res = eval('obj[name]('+arr+')')
     delete obj[name] 
     return res
 }
