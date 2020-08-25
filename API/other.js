@@ -26,6 +26,7 @@ function objectIs(x, y){
 function myNew(fn){
     let obj = {}
     obj.__proto__ = fn.prototype
+    // let obj = Object.setPrototypeOf({}, fn.prototype)
     let res = fn.apply(obj, [...arguments].slice(1))
     return typeof res == 'object' ? res : obj  // new 的特性，当fn返回值是一个对象时，只能访问返回值里面的属性
 }
