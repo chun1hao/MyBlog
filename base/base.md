@@ -40,16 +40,6 @@ function f1(f){
 }
 f1(f2) // 10
 ```
-```
-function f2(){
-    console.log(x)
-}
-function f1(f){
-    var x = 20
-    f()
-}
-f1(f2) // x is not defined
-```
 
 ## 4. null 不是对象，typeof null === 'object' 是 js 的bug
 
