@@ -161,14 +161,15 @@
     }
 
     MyPromise.prototype.finally = function(fn){
-        // 所有的then调用是一起的，但是这个then里调用fn又异步了一次，所以它总是最后调用的,这里只能保证在已添加的函数里是最后一次
-        return this.then(function(v){
-            setTimeout(fn);
-            return v;
-        }, function(e){
-            setTimeout(fn);
-            return e;
-        });
+        return this.then(function(val){
+            return MyPromise.relove(fn()).then(function(){
+                return val
+            })
+        }, function(err){
+            return MyPromise.relove(fn()).then(function(){
+                throw err
+            })
+        })
     }
 
     MyPromise.resolve = function(params){
@@ -214,39 +215,39 @@
 
     MyPromise.race = function(promises){
         return new MyPromise(function(resolve, reject){
-            var len = promises.len;
-            if(!len) return;
-            for(var i=0; i<len; i++){
-                MyPromise.resolve(promises[i]).then(function(v){
-                    return resolve(v);
-                }, function (e) {
-                    return reject(e)
-                })
-            } 
-        })
+            var len = promises.length
+            if(!len) return 
+            for(let i=0;i<promises.length;i++){
+                promises[i].then(resolve, reject);
+            }
+        })        
     }
 
     MyPromise.allSettled = function(promises){
-        var len = promises.length, result = new Array(len), resolveCount = 0;
-        return new MyPromise(function(resolve){
-            if(!len) return resolve([]);
-            for(var i=0; i<len; i++){                
-                MyPromise.resolve(promises[i]).then(function(v){
-                    resolveCount++;
-                    result[i] = {ststus: 'fulfilled', value: v}
-                    if(len === resolveCount){
-                        resolve(result);
+        return new Promise(resolve => {
+            const len = promises.length,
+                result = new Array(len);
+            let resolveCount = 0;
+            if (!len) return resolve([]);
+            for (let i = 0; i < len; i++) {
+                Promise.resolve(promises[i]).then(
+                    v => {
+                        resolveCount++;
+                        result[i] = {status: 'fulfilled', value: v};
+                        if (len === resolveCount) {
+                            resolve(result);
+                        }
+                    },
+                    e => {
+                        resolveCount++;
+                        result[i] = {status: 'rejected', value: e};
+                        if (len === resolveCount) {
+                            resolve(result);
+                        }
                     }
-                }, function (e) {
-                    resolveCount++;
-                    result[i] = {ststus: 'rejected', value: e}
-                    if(len === resolveCount){
-                        resolve(result);
-                    }
-                })
-            } 
-            
-        })
+                );
+            }
+        });
     }
 
     // promise/A+ test
