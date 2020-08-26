@@ -46,23 +46,27 @@
 
     function resolveProcess(_promise, x, resolve, reject){
         // 处理resolve和reject不同的是resolve需要尝试展开thenable对象（即x）
-        var isFirst = true, then;
-        // let y = new Promise(res => setTimeout(res(y)))
+        var isFirst = true, then;        
         if(x === _promise){
+            // 循环引用问题
+            // let y = new Promise(reslove => setTimeout(reslove(y)))
             return reject(new TypeError('Chaining cycle detected for promise!'))
         }
-        if(x instanceof MyPromise){
-            if(x.status === 'pending'){
-                x.then(function(value){
-                    resolveProcess(_promise, value, resolve, reject);
-                }, function(error){
-                    reject(error);
-                })
-            }else{
-                x.then(resolve, reject);
-            }
-            return;
-        }
+        
+        // 这种情况包含在对象里面了
+        // if(x instanceof MyPromise){
+        //    if(x.status === 'pending'){
+        //        x.then(function(value){
+        //            resolveProcess(_promise, value, resolve, reject);
+        //        }, function(error){
+        //            reject(error);
+        //        })
+        //    }else{
+        //        x.then(resolve, reject);
+        //    }
+        //    return;
+        // }
+        
         if((typeof x === 'object' || typeof x === 'function') && x !== null){
             try{
                 then = x.then;
