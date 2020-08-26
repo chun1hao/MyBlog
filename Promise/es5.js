@@ -46,6 +46,8 @@
 
     function resolveProcess(_promise, x, resolve, reject){
         // 处理resolve和reject不同的是resolve需要尝试展开thenable对象（即x）
+        
+        // isFirst x.then 防止多次调用
         var isFirst = true, then;        
         if(x === _promise){
             // 循环引用问题
