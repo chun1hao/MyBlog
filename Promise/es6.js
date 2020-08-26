@@ -132,15 +132,9 @@ class MyPromise{
 
     finally(fn){
         return this.then((v)=>{
-            setTimeout(() => {
-                resolve(fn);
-                return v
-            });
-        },()=>{
-            setTimeout((r) => {
-                resolve(fn);
-                return r
-            });
+            return reslove(fn).then(()=>v)
+        },(e)=>{
+            return reslove(fn).then(()=>e)
         })        
     }
 
