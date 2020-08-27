@@ -71,10 +71,9 @@ class MyPromise{
     }
 
     then(onResolved, onRejected){
-        let t = this;
         let _promise;
-        onResolved = typeof onResolved === 'function' ? onResolved : function(value){return value};
-        onRejected = typeof onRejected === 'function' ? onRejected : function(error){throw error};
+        onResolved = typeof onResolved  == 'function'? onResolved : value => value;
+        onRejected = typeof onRejected  == 'function'? onRejected : error => {throw error};
 
         if(this.status === 'pending'){
             return _promise = new MyPromise((resolve, reject)=>{
