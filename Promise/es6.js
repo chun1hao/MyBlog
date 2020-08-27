@@ -1,187 +1,172 @@
 class MyPromise{
     constructor(fn){
-        this.status = 'pending';
-        this.data = null;
-        this.onResolveCallbacks = [];
-        this.onRejectCallbacks = [];
+        this.status = 'pending'
+        this.data = null
+        
+        this.onFulfilledCallback = []
+        this.onRejectedCallback = []
+
+        let resolve = value =>{
+            if(this.status == 'pending'){
+                setTimeout(() => {
+                    this.status = 'fulfilled'
+                    this.data = value
+                    this.onFulfilledCallback.forEach(i=> i())
+                });                
+            }
+        }
+        let reject = reason =>{
+            if(this.status == 'pending'){
+                setTimeout(() => {
+                    this.status = 'rejected'
+                    this.data = reason
+                    this.onRejectedCallback.forEach(i=> i())
+                })                
+            }
+        }
 
         try{
-            fn(this._resolve.bind(this), this._reject.bind(this));
+            fn(resolve, reject)
         }catch(e){
-            this._reject(e);
+            reject(e)
         }
     }
-
-    _resolve(value){
-        setTimeout(()=>{
-            this.status = 'fulfilled';
-            this.data = value;
-            this.onResolveCallbacks.forEach(callback=> callback(value));
-        });
-    }
-
-    _reject(error){
-        setTimeout(()=>{
-            this.status = 'rejected';
-            this.data = error;
-            this.onRejectCallbacks.forEach(callback=> callback(error));
-        });
-    }
-
-    _resolveProcess(_promise, x, resolve, reject){
-        let isFirst = true;
-        let then;
-        if(x === _promise){
-            return reject(new TypeError('xxx'));
-        }
-        if(x instanceof MyPromise){
-            if(x.status === 'pending'){
-                x.then(value=>{
-                    this._resolveProcess(_promise, value, resolve, reject);
-                }, error=> reject(error))                    
-            }else{
-                x.then(resolve, reject);
-            }
-            return;
-        }
-        if((typeof x === 'object' || typeof x === 'function') && x !== null){
-            try{
-                then = x.then;
-                if(typeof then === 'function'){
-                    then.call(x, y=> {
-                        if(!isFirst) return;
-                        isFirst = false;
-                        this._resolveProcess(_promise, y, resolve, reject);
-                    }, r=> {
-                        if(!isFirst) return;
-                        isFirst = false;
-                        reject(r);
-                    });
-                }else{
-                    resolve(x);
-                }
-            }catch(e){
-                if(!isFirst) return;
-                isFirst = false;
-                reject(e);
-            }
-        }else{
-            resolve(x);
-        }
-    }
-
-    then(onResolved, onRejected){
-        let _promise;
-        onResolved = typeof onResolved  == 'function'? onResolved : value => value;
+    then(onFulfilled, onRejected){
+        onFulfilled = typeof onFulfilled  == 'function'? onFulfilled : value => value;
         onRejected = typeof onRejected  == 'function'? onRejected : error => {throw error};
 
-        if(this.status === 'pending'){
-            return _promise = new MyPromise((resolve, reject)=>{
-                this.onResolveCallbacks.push((value)=>{
+        let promise2 = new MyPromise((resolve, reject)=>{
+            if(this.status == 'pending'){
+                this.onFulfilledCallback.push(()=>{
                     try{
-                        let x = onResolved(value);
-                        this._resolveProcess(_promise, x, resolve, reject);
+                        let x = onFulfilled(this.data)
+                        resolveProcess(promise2, x, resolve, reject)
                     }catch(e){
-                        reject(e);
+                        reject(e)
                     }
                 })
-                this.onRejectCallbacks.push((error)=>{
+                this.onRejectedCallback.push(()=>{
                     try{
-                        let x = onRejected(error);
-                        this._resolveProcess(_promise, x, resolve, reject);
+                        let x = onRejected(this.data)
+                        resolveProcess(promise2, x, resolve, reject)
                     }catch(e){
-                        reject(e);
+                        reject(e)
                     }
                 })
-            })
-        }
-
-        if(this.status === 'fulfilled'){
-            return _promise = new MyPromise((resolve, reject)=>{
+            }
+            if(this.status == 'fulfilled'){
                 setTimeout(() => {
                     try{
-                        let x = onResolved(t.data);
-                        this._resolveProcess(_promise, x, resolve, reject);
+                        let x = onFulfilled(this.data)
+                        resolveProcess(promise2, x, resolve, reject)
                     }catch(e){
-                        reject(e);
-                    }
+                        reject(e)
+                    }        
                 });
                 
-            })
-        }
-
-        if(this.status === 'rejected'){
-            return _promise = new MyPromise((resolve, reject)=>{
+            }
+            if(this.status == 'rejected'){
                 setTimeout(() => {
                     try{
-                        let x = onRejected(t.data);
-                        this._resolveProcess(_promise, x, resolve, reject);
+                        let x = onRejected(this.data)
+                        resolveProcess(promise2, x, resolve, reject)
                     }catch(e){
-                        reject(e);
-                    }
-                });
-                
-            })
-        }
-    }        
-
-    catch(onRejected){
-        return this.then(null, onRejected);
-    }
-
-    finally(fn){
-        return this.then((v)=>{
-            return reslove(fn).then(()=>v)
-        },(e)=>{
-            return reslove(fn).then(()=>e)
-        })        
-    }
-
-    static resolve(parsms){
-        if (parsms instanceof MyPromise) return value;
-        return new MyPromise((resovle, reject)=>{
-            if(parsms && parsms.then && typeof parsms.then==='function'){
-                parsms.then(resovle, reject)
-            }else{
-                resolve(parsms);
+                        reject(e)
+                    }      
+                });                
             }
         })
+        return promise2
     }
-
-    static reject(params){
-        return new MyPromise((resolve, reject)=>{
-            reject(params);
+    catch(fn){
+        return this.then(null, fn)
+    }
+    finally(fn){
+        this.then(val=>{
+            // resolve 是静态方法
+            return MyPromise.resolve(fn()).then(()=> val)
+        }, err=>{
+            return MyPromise.reject(fn()).then(()=> {throw err})
         })
+    }  
+    static resolve(val){
+        return new MyPromise(resolve=> resolve(val))
+    }  
+    static reject(error){
+        return new MyPromise((resolve, reject)=> reject(error))
     }
-
-    static all(promises){
-        let values = []
-        let count = 0
-        for (let [i, p] of promises.entries()) {
-            // 数组参数如果不是MyPromise实例，先调用MyPromise.resolve
-            this.resolve(p).then(res => {
-                values[i] = res
-                count++
-                // 所有状态都变成fulfilled时返回的MyPromise状态就变成fulfilled
-                if (count === list.length) resolve(values)
-            }, err => {
-                // 有一个被rejected时返回的MyPromise状态就变成rejected
-                reject(err)
-            })
-        }
-    }
-
-    static race (list) {
-        return new MyPromise((resolve, reject) => {
-            for (let p of list) {
-                // 只要有一个实例率先改变状态，新的MyPromise的状态就跟着改变
-                this.resolve(p).then(res => {
-                    resolve(res)
-                }, err => {
+    static all(promises){        
+        return new MyPromise((resolve, reject)=>{
+            let count = 0, len = promises.length, res= new Array(len)
+            for(let i=0;i<len;i++){
+                // 静态方法中 this 指向类，非静态中可能指向实例
+                this.resolve(promises[i]).then(val=>{
+                    count++
+                    res[i] = val
+                    if(len == count) resolve(res)
+                },err=>{
                     reject(err)
                 })
             }
         })
+    }
+    static race(promises){
+        return new MyPromise((resolve, reject)=>{
+            let len = promises.length, res= new Array(len)
+            for(let i=0;i<len;i++){
+                this.resolve(promises[i]).then(val=>{
+                    resolve(res)
+                },err=>{
+                    reject(err)
+                })
+            }
+        })
+    }
+    static allSettled(promises){
+        return new MyPromise((resolve)=>{
+            let count = 0, len = promises.length, res= new Array(len)
+            for(let i=0;i<len;i++){
+                this.resolve(promises[i]).then(val=>{
+                    count++
+                    res[i] = {status: 'fulfilled', value: val}
+                    if(len == count) resolve(res)
+                },err=>{
+                    count++
+                    res[i] = {status: 'fulfilled', value: err}
+                    if(len == count) resolve(res)
+                })
+            }
+        })
+    }
+}
+function resolveProcess(promise2, x, resolve, reject){
+    let isCalled = false
+    if(promise2 === x){
+        return reject(new TypeError('xx'))
+    }
+    if(x !== null && (typeof x === 'object' || typeof x === 'function')){
+        try{
+            let then = x.then;
+            if(typeof then == 'function'){
+                then.call(x, y=>{
+                    if(isCalled) return
+                    isCalled = true
+                    resolveProcess(promise2, y, resolve, reject)
+                }, r=>{
+                    if(isCalled) return
+                    isCalled = true
+                    reject(r)
+                })
+            }else{
+                resolve(x)
+            }
+        }catch(e){            
+            if(isCalled) return
+            isCalled = true
+            reject(e)
+        }
+    }else{
+        resolve(x)
     }
 }
 
