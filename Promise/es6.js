@@ -111,14 +111,10 @@ class MyPromise{
         })
     }
     static race(promises){
+        let len = promises.length
         return new MyPromise((resolve, reject)=>{
-            let len = promises.length, res= new Array(len)
             for(let i=0;i<len;i++){
-                this.resolve(promises[i]).then(val=>{
-                    resolve(res)
-                },err=>{
-                    reject(err)
-                })
+                MyPromise.resolve(promises[i]).then(val=> resolve(val), err=> reject(err))
             }
         })
     }
