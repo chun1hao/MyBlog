@@ -180,4 +180,5 @@ try {
     module.exports = MyPromise
 } catch (e) {}
 
+// promises-aplus-tests
 // promises-aplus-tests es6.js
