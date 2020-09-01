@@ -6,22 +6,18 @@ class MyPromise{
         this.onFulfilledCallback = []
         this.onRejectedCallback = []
 
-        let resolve = value =>{
-            if(this.status == 'pending'){
-                setTimeout(() => {
-                    this.status = 'fulfilled'
-                    this.data = value
-                    this.onFulfilledCallback.forEach(i=> i())
-                });                
+        let resolve = value => {
+            if(this.status == 'pending'){                
+                this.status = 'fulfilled';
+                this.data = value;
+                this.onFulfilledCallbacks.forEach(callback=> callback())
             }
         }
-        let reject = reason =>{
+        let reject = reason => {
             if(this.status == 'pending'){
-                setTimeout(() => {
-                    this.status = 'rejected'
-                    this.data = reason
-                    this.onRejectedCallback.forEach(i=> i())
-                })                
+                this.status = 'rejected';
+                this.data = reason;
+                this.onRejectedCallbacks.forEach(callback=> callback())
             }
         }
 
@@ -37,21 +33,25 @@ class MyPromise{
 
         let promise2 = new MyPromise((resolve, reject)=>{
             if(this.status == 'pending'){
-                this.onFulfilledCallback.push(()=>{
-                    try{
-                        let x = onFulfilled(this.data)
-                        resolveProcess(promise2, x, resolve, reject)
-                    }catch(e){
-                        reject(e)
-                    }
+                this.onFulfilledCallbacks.push(()=>{
+                    setTimeout(() => {
+                        try{
+                            let x = onFulfilled(this.data)
+                            resolveProcess(promise2, x, reolve, reject)
+                        }catch(e){
+                            reject(e)
+                        }
+                    })
                 })
-                this.onRejectedCallback.push(()=>{
-                    try{
-                        let x = onRejected(this.data)
-                        resolveProcess(promise2, x, resolve, reject)
-                    }catch(e){
-                        reject(e)
-                    }
+                this.onRejectedCallbacks.push(()=>{
+                    setTimeout(() => {
+                        try{
+                            let x = onRejected(this.data)
+                            resolveProcess(promise2, x, reolve, reject)
+                        }catch(e){
+                            reject(e)
+                        }
+                    })
                 })
             }
             if(this.status == 'fulfilled'){
