@@ -10,9 +10,11 @@
 ### [防抖、节流](https://github.com/chun1hao/MyBlog/issues/8)
 ### [柯里化、偏函数](https://github.com/chun1hao/MyBlog/issues/9)
 ### [函数组合](https://github.com/chun1hao/MyBlog/issues/10)
+### [洗牌](https://github.com/chun1hao/MyBlog/issues/11)
 ### [ES6简单总结](https://github.com/chun1hao/MyBlog/blob/master/ES6/readme.md)
 ### [杂项](https://github.com/chun1hao/MyBlog/blob/master/base/base.md)
 ### [数据结构](https://github.com/chun1hao/MyBlog/blob/master/base/dataStructure.md)
 ### [网络相关](https://github.com/chun1hao/MyBlog/blob/master/base/http.md)
+
 
 
