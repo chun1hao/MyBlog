@@ -122,14 +122,14 @@ class MyPromise{
         return new MyPromise((resolve)=>{
             let count = 0, len = promises.length, res= new Array(len)
             for(let i=0;i<len;i++){
-                this.resolve(promises[i]).then(val=>{
+                promises[i].then(val=>{
                     count++
                     res[i] = {status: 'fulfilled', value: val}
-                    if(len == count) resolve(res)
-                },err=>{
+                    if(count === len) resolve(res)
+                }, err=>{
                     count++
-                    res[i] = {status: 'fulfilled', value: err}
-                    if(len == count) resolve(res)
+                    res[i] = {status: 'rejected', value: err}
+                    if(count === len) resolve(res)
                 })
             }
         })
