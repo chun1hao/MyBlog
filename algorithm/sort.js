@@ -184,6 +184,7 @@ function quickSort(arr, start = 0, end = arr.length - 1){
         [arr[i], arr[pos]] = [arr[pos], arr[i]]
       }
     }
+     // 注意先后顺序
     quickSort(arr, start, pos - 1);
     quickSort(arr, pos + 1 , end);
   }  
@@ -208,6 +209,7 @@ function quickSort(arr, start = 0, end = arr.length - 1){
         i++
       }
     }
+    // 注意先后顺序
     quickSort(arr, start, leftPos)
     quickSort(arr, rightPos, end)
   }    
