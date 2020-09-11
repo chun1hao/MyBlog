@@ -43,6 +43,13 @@ https 第三种方式，但是任然不能避免中间人攻击：
 **数字证书**   
 将公钥和个人信息使用 hash 算法生成摘要，再使用 CA 认证私钥加密生成 数字签名，最后将 数字签名 和 原始信息 合并生成数字证书
 接受到证书后对原始信息使用  hash 算法生成 摘要，在用 CA 公钥对 数字签名 解密，得到数字签名，对比两个摘要
+
+**https 握手过程**
+1. 客户端发送ssl链接请求给服务端
+2. 服务端发送公钥、证书向客户端
+3. 客户端收到后，检查证书的颁发机构以及过期时间，如果没问题生成一个私钥，通过公钥加密发送给服务端
+4. 服务端用自己的私钥解密客户端发来的会话私钥
+5. 后续用会话私钥进行通信
 ![Image text](http://mmbiz.qpic.cn/mmbiz_png/KyXfCrME6UJFk4ma5Y5g5wIeggZaCZ3xKYfzxv54kPQ9q9SKRPHpnVib9MF6MfPcLJgej3wicCVZSicUMNzoVasiaA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 
 ### 报文
