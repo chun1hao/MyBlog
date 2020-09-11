@@ -420,5 +420,36 @@ console.log(bar(3, 3, 3)) // 16
 - 伪元素：不存在在DOM文档中，是虚拟的元素，是创建新元素。 这个新元素(伪元素)  是某个元素的子元素，这个子元素虽然在逻辑上存在，但却并不实际存在于文档树中.
 - 伪类：存在DOM文档中，(无标签,找不到,  只有符合触发条件时才能看到 ),  逻辑上存在但在文档树中却无须标识的“幽灵”分类。
 　　　  
+## 25. 模块化
+###模块化主要是用来抽离公共代码、隔离作用域、避免全局污染等
 
+- 自运行函数：在一个单独的作用域中执行代码，避免了变量冲突
 
+- AMD：requireJS   前置依赖，异步加载
+```javascript
+define('./a.js',  function(data){ // data 为 a.js 返回的内容
+
+})
+```
+
+- CMD：seaJS   延迟加载，使用时才会加载
+```javascript
+define(function(require, exports, module){
+    var a = require('./a.js');
+})
+```
+
+- commonJS：node  同步加载，运行时加载
+```javascript
+let a = require('./a.js')
+
+// a.js
+module.exports.a = 'aaa'
+```
+
+- esModules：ES6  初始只生成一个引用，执行代码时才会加载需要的模块
+```javascript
+import a from './a.js'
+
+export default {a: 'aaa'}
+```
