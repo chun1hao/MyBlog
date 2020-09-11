@@ -453,3 +453,16 @@ import a from './a.js'
 
 export default {a: 'aaa'}
 ```
+## 26. BFC
+BFC 就是块级格式上下文，盒模型布局中 css 的一直渲染模式，相当与一个独立容器，其内部和外部元素互不影响  
+**产生BFC：**
+- html 根元素
+- flat 元素
+- 绝对定位
+- display: table / flex
+- overflow 不为 visiable
+**BFC特性**
+- 内部box会在垂直方向，一个接一个地放置
+- Box垂直方向的距离由margin决定，在一个BFC中，两个相邻的块级盒子的垂直外边距会产生折叠
+- 在BFC中，每一个盒子的左外边缘（margin-left）会触碰到容器的左边缘(border-left)
+- 形成了BFC的区域不会与float box重叠
