@@ -477,3 +477,20 @@ let referrer = document.referrer ? document.referrer : "none"
 let img = new Image()
 img.src = `http://aaa.com/a.gif?p=${encodeURI(curPage)}&r=${encodeURI(referrer)}`
 ```
+
+## 28
+```javascript
+var obj = {
+    '2': 3,
+    '3': 4,
+    'length': 2,
+    'splice': Array.prototype.splice,
+    'push': Array.prototype.push
+}
+obj.push(1)
+obj.push(2)
+console.log(obj)
+// Object(4) [empty × 2, 1, 2, splice: ƒ, push: ƒ]
+// 对于对象只要添加了 length 和 splice (该属性只要为函数)，就会转化为类数组
+// push 的时候在length处向后添加，同时 length +1  -> obj[2] = 1 obj[3]=2  length = 4
+```
