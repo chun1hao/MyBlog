@@ -491,6 +491,6 @@ obj.push(1)
 obj.push(2)
 console.log(obj)
 // Object(4) [empty × 2, 1, 2, splice: ƒ, push: ƒ]
-// 对于对象只要添加了 length 和 splice (该属性只要为函数)，就会转化为类数组
-// push 的时候在length处向后添加，同时 length +1  -> obj[2] = 1 obj[3]=2  length = 4
+// 对于对象只要添加了splice (该属性只要为函数)，就会转化为类数组
+// push 的时候在length处向后添加，同时 length +1（当没有length时或者 length 不为数值时，会默认创建 length 并赋值为0）  -> obj[2] = 1 obj[3]=2  length = 4
 ```
