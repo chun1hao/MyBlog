@@ -84,6 +84,7 @@ class MyPromise{
     finally(fn){
         this.then(val=>{
             // resolve 是静态方法
+            // 这里用 MyPromise.resolve 是考虑到 fn 可能为一个异步方法
             return MyPromise.resolve(fn()).then(()=> val)
         }, err=>{
             return MyPromise.reject(fn()).then(()=> {throw err})
