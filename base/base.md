@@ -102,7 +102,7 @@ cFn.__proto__ == Fn.prototype // true
 ```
 
 ## 10. forEach 中不能使用 return 语句，可以使用 some、every 代替
-some: 有一个满足返回 true
+some: 有一个满足返回 true  
 every: 都满足才返回 true
 
 ```
