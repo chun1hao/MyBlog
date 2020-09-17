@@ -460,7 +460,7 @@ BFC 就是块级格式上下文，盒模型布局中 css 的一直渲染模式�
 - flat 元素
 - 绝对定位
 - display: table / flex
-- overflow 不为 visiable
+- overflow 不为 visiable  
 **BFC特性**
 - 内部box会在垂直方向，一个接一个地放置
 - Box垂直方向的距离由margin决定，在一个BFC中，两个相邻的块级盒子的垂直外边距会产生折叠
