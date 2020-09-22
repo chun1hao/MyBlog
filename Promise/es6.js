@@ -3,8 +3,8 @@ class MyPromise{
         this.status = 'pending'
         this.data = null
         
-        this.onFulfilledCallback = []
-        this.onRejectedCallback = []
+        this.onFulfilledCallbacks = []
+        this.onRejectedCallbacks = []
 
         let resolve = value => {
             if(this.status == 'pending'){                
