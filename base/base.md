@@ -499,3 +499,15 @@ console.log(obj)
 都是异步加载
 defer 脚本加载完成后，要等到文档加载完成才会执行脚本
 async 脚本加载完成后，立即执行脚本，然后再执行文档解析
+
+## 30 清除浮动
+clear: both
+overflow: hidden
+伪元素：
+.box:after{
+    content: '';
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
