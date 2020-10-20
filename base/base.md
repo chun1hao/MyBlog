@@ -494,3 +494,8 @@ console.log(obj)
 // 对于对象只要添加了splice (该属性只要为函数)，就会转化为类数组
 // push 的时候在length处向后添加，同时 length +1（当没有length时或者 length 不为数值时，会默认创建 length 并赋值为0）  -> obj[2] = 1 obj[3]=2  length = 4
 ```
+
+## 29 script 标签中 defer 和 async 区别
+都是异步加载
+defer 脚本加载完成后，要等到文档加载完成才会执行脚本
+async 脚本加载完成后，立即执行脚本，然后再执行文档解析
