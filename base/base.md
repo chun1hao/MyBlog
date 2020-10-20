@@ -511,3 +511,7 @@ overflow: hidden
     visibility: hidden;
     clear: both;
 }
+
+## 两个display: inline,会有空格
+1. 排在一行
+2. 设置父元素 font-size：0
