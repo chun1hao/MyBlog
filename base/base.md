@@ -495,12 +495,12 @@ console.log(obj)
 // push 的时候在length处向后添加，同时 length +1（当没有length时或者 length 不为数值时，会默认创建 length 并赋值为0）  -> obj[2] = 1 obj[3]=2  length = 4
 ```
 
-## 29 script 标签中 defer 和 async 区别
+## 29. script 标签中 defer 和 async 区别
 都是异步加载
 defer 脚本加载完成后，要等到文档加载完成才会执行脚本
 async 脚本加载完成后，立即执行脚本，然后再执行文档解析
 
-## 30 清除浮动
+## 30. 清除浮动
 clear: both
 overflow: hidden
 伪元素：
@@ -512,6 +512,39 @@ overflow: hidden
     clear: both;
 }
 
-## 两个display: inline,会有空格
+## 31. 两个display: inline,会有空格
 1. 排在一行
 2. 设置父元素 font-size：0
+
+## 32. flex
+- flex-grow  当还有剩余空间时的占比，按照权重分配
+大于 1 时
+.a{ flex-grow: 1 }
+.b{ flex-grow: 2}
+剩余 100   则 a 多分配 33 ，b多66
+小于1  
+.a-0.1   .b-0.2  
+a:100*0.1, b:100*0.2
+
+- flex-shrink 当空间不够时，缩小比例
+大于1
+父元素 500px。三个子元素分别设置为 150px，200px，300px。
+三个子元素的 flex-shrink 的值分别为 1，2，3。
+首先，计算子元素溢出多少：150 + 200 + 300 - 500 = -150px。
+那这 -150px 将由三个元素的分别收缩一定的量来弥补。
+总权重为 1 * 150 + 2 * 200 + 3 * 300 = 1450
+三个元素分别收缩：
+150 * 1(flex-shrink) * 150(width) / 1450 = -15.5
+150 * 2(flex-shrink) * 200(width) / 1450 = -41.4
+150 * 3(flex-shrink) * 300(width) / 1450 = -93.1
+
+小于1
+三个子元素的 flex-shrink 的值分别为 0.1，0.2，0.3
+总权重为 145， 收缩量为 150 * 0.6 = 90
+三个元素分别收缩：
+90 * 0.1 * 150/145 = 9.31
+90 * 0.2 * 200/145 = 24
+90 * 0.3 * 300/145 = 55
+
+
+- flex-basis  盒子在主轴默认宽度 优先级高于width  max-width 可以限制其宽度
