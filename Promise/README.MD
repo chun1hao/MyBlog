@@ -68,4 +68,4 @@ const allSettledPromise1 = Promise.allSettled([resolved1, resolved2, rejected1])
 thenable:是一个定义了 then 方法的对象或函数，“拥有 then 方法”
 x 是promise.then的返回值 .then方法必须返回一个promise对象
 ```
-## 4. [简单实现代码](https://github.com/chun1hao/MyBlog/blob/master/Promise/es6.js)  
+## 4. [简单实现](https://github.com/chun1hao/MyBlog/blob/master/Promise/es6.js)  
