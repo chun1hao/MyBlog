@@ -502,7 +502,8 @@ async 脚本加载完成后，立即执行脚本，然后再执行文档解析
 
 ## 30. 清除浮动
 clear: both
-overflow: hidden
+overflow: hidden  
+
 伪元素：
 .box:after{
     content: '';
