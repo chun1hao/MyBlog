@@ -62,6 +62,11 @@ https 第三种方式，但是任然不能避免中间人攻击：
 |  Date  | 创建报文时间  |
 |  Transfer-Encoding  | 传输编码方式：chunked分块传输  |
 
+**keep-alive 如何保证数据传输完成**
+- content-length: 报文实体长度
+- Transfer-Encoding:chunked 最后会发送一个空的 chunked 块，表示传输结束
+
+
 | 请求首部 | 作用  |
 |  ----  | ----  |
 |  Accept  | 能正确接收的媒体类型：application/json text/plain  |
