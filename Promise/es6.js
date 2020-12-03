@@ -115,7 +115,7 @@ class MyPromise{
         let len = promises.length
         return new MyPromise((resolve, reject)=>{
             for(let i=0;i<len;i++){
-                MyPromise.resolve(promises[i]).then(val=> resolve(val), err=> reject(err))
+                MyPromise.resolve(promises[i]).then(resolve, reject)
             }
         })
     }
