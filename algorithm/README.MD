@@ -1,4 +1,4 @@
-## [经典排序](https://github.com/chun1hao/MyBlog/blob/master/algorithm/sort.js)
+## [排序算法](https://github.com/chun1hao/MyBlog/blob/master/algorithm/sort.js)
 
 ![image](https://github.com/chun1hao/MyBlog/blob/master/algorithm/%E5%A4%8D%E6%9D%82%E5%BA%A6.png)
   
