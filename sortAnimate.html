@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html, body, ul, li{
+        margin: 0;
+        padding: 0;
+      }
+      ul{
+        display: flex;
+        margin-top: 50px;
+        border-bottom: 1px solid #ccc;
+        padding: 0 20px;
+        height: 150px;
+      }
+      li{
+        list-style: none;        
+        margin-right: 10px; 
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+      li div{
+        width: 20px;
+        height: 40px; 
+        background: #ccc;
+      }
+      .active div{
+        background: red;
+      }
+      .active span{
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="shuffle">shuffle</button>
+    <button class="quick">Sort By Quick</button>
+    <button class="bubble">Sort By Bubble</button>
+    <button class="select">Sort By Selection</button>
+    <ul class="box">
+    </ul>
+  </body>
+  <script>
+    const arr = []
+    let tar = getDom('ul')
+    let button = getDom('.quick')
+    let button1 = getDom('.bubble')
+    let button2 = getDom('.select')
+    let button3 = getDom('.shuffle')
+    let eventList = []
+    let domEventList = []
+    button.onclick = function(){
+      quickSort(arr)
+      sortDom()
+    }
+    button1.onclick = function(){
+      bubbleSort(arr)
+      sortDom()
+    }
+    button2.onclick = function(){
+      selectSort(arr)
+      sortDom()
+    }
+    button3.onclick = function(){
+      window.location.reload()
+    }
+    createDom()
+    function getDom(select){
+      return document.querySelector(select)
+    }
+    function createDom(){      
+      for(let i=0;i<40;i++){
+        let num = parseInt(Math.random()*100)+1
+        arr.push(num)
+        eventList.push(()=> {
+          let li = document.createElement('li')
+          let span = document.createElement('span')
+          let div = document.createElement('div')
+          let content = document.createTextNode(num)
+          div.style.height = num + 'px'
+          li.classList.add('li_' + i)
+          span.appendChild(content)
+          li.appendChild(span)
+          li.appendChild(div)
+          tar.appendChild(li)
+        })
+      }
+      insertDom()
+    }
+    function insertDom(){
+      if(eventList.length){
+        let event = eventList.shift()
+        event()
+        setTimeout(()=> {
+          insertDom()
+        }, 50)        
+      }
+    }
+    function quickSort(arr, start=0, end=arr.length-1){
+      if(start<end){
+        let povite = arr[end]
+        let pos=start-1
+        for(let i=start;i<=end;i++){
+          if(arr[i]<=povite){
+            pos++
+            if(i==pos) continue
+            [arr[i], arr[pos]] = [arr[pos], arr[i]]
+            ;(function(idx, pos){
+                domEventList.push(()=> {
+                changeDom(idx, pos)
+              })
+            })(i, pos)            
+          }
+        }
+        quickSort(arr, start, pos-1)
+        quickSort(arr, pos+1, end)
+      }
+    }
+    function bubbleSort(arr){
+      for(let i=0;i<arr.length;i++){
+        for(let j=0;j<arr.length-i-1;j++){
+          if(arr[j]>arr[j+1]){
+            [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
+            ;(function(idx, pos){
+                domEventList.push(()=> {
+                changeDom(idx, pos)
+              })
+            })(j, j+1)
+          }
+        }
+      }
+    }
+    function selectSort(arr){      
+      for(let i=0;i<arr.length-1;i++){ 
+        let minIdx = i       
+        for(let j=i+1;j<arr.length;j++){
+          if(arr[minIdx]>arr[j]){
+            minIdx = j
+          }          
+        }
+        if(minIdx == i) continue
+        [arr[minIdx], arr[i]] = [arr[i], arr[minIdx]]
+        ;(function(idx, pos){
+            domEventList.push(()=> {
+            changeDom(idx, pos)
+          })
+        })(minIdx, i)
+      }
+    }
+    function changeDom(left, right){
+      let class1 = '.li_'+left
+      let class2 = '.li_'+right
+      let tar1 = document.querySelector(class1)
+      let tar2 = document.querySelector(class2)
+      tar1.classList.toggle('active')
+      tar2.classList.toggle('active')
+      let clone1 = tar1.cloneNode(true)
+      let clone2 = tar2.cloneNode(true)
+      tar.replaceChild(clone2, tar1)
+      tar.replaceChild(clone1, tar2)
+      setTimeout(()=> {
+        clone1.classList.toggle('active')
+        clone2.classList.toggle('active')
+        clone1.classList.replace('li_'+left, 'li_'+right)    
+        clone2.classList.replace('li_'+right, 'li_'+left)
+      }, 50)
+    }
+    function sortDom(){
+      if(domEventList.length){
+        let event = domEventList.shift()
+        event()
+        setTimeout(()=> {
+          sortDom()
+        }, 50)
+      }      
+    }
+  </script>
+</html>
