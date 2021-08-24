@@ -104,6 +104,7 @@ class MyPromise{
                 this.resolve(promises[i]).then(val=>{
                     count++
                     res[i] = val
+                    // 如果res是 [] 这种形式，也不能使用res.length === count，比如先返回的是第六个 则会赋值为 res[6] = ss，此时的length为7
                     if(len == count) resolve(res)
                 },err=>{
                     reject(err)
