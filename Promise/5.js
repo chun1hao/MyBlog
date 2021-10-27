@@ -177,10 +177,10 @@ class MPromise {
   finally(fn) {
     return this.then(
       (val) => {
-        return MPromise.resolve(fn).then(() => val);
+        return MPromise.resolve(fn()).then(() => val);
       },
       (err) => {
-        return MPromise.resolve(fn).then(() => {
+        return MPromise.resolve(fn()).then(() => {
           throw err;
         });
       }
