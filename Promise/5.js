@@ -162,7 +162,8 @@ class MPromise {
       for (let i = 0; i < promiseList.length; i++) {
         MPromise.resolve(promiseList[i]).then(
           (val) => {
-            ans[idx++] = val;
+            ans[i] = val;
+            idx++
             if (idx === promiseList.length) {
               resolve(ans);
             }
